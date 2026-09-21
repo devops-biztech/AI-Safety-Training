@@ -59,6 +59,8 @@
   --chrome:        var(--navy-800);
   --chrome-deep:   var(--navy-900);
   --chrome-line:   var(--navy-400);
+  --chrome-control-line: #7d8b9e;  /* 4.7:1 on the header, both themes */
+  --focus-on-chrome: var(--blue-300);
 
   --action:        var(--blue-600);
   --action-hover:  var(--blue-700);
@@ -173,6 +175,10 @@ body {
 
 .wrap { width: 100%; max-width: var(--measure); margin: 0 auto; padding: 0 20px; }
 
+/* the hidden attribute has to beat component display rules, or a
+   version-specific grid or list would still render */
+[hidden] { display: none !important; }
+
 .sr-only {
   position: absolute;
   width: 1px; height: 1px;
@@ -192,9 +198,49 @@ body {
   color: var(--ink-invert);
   border-bottom: 1px solid var(--chrome-line);
 }
-.header-inner { display: flex; align-items: center; gap: 16px; padding: 20px 0; }
+/* vertical padding only: the .wrap gutter keeps the header off the screen edge */
+.header-inner { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; padding-top: 20px; padding-bottom: 20px; }
+.header-titles { flex: 1 1 15rem; min-width: 0; }
 .site-header h1 { margin: 0; font-size: 1.2rem; letter-spacing: .01em; }
 .tagline { margin: 2px 0 0; font-size: .85rem; color: var(--ink-on-dark); }
+
+/* version picker: a native select, restyled for the dark header */
+.version-field { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.version-label { font-size: .8rem; color: var(--ink-on-dark); }
+.version-control { position: relative; display: inline-flex; color: var(--ink-on-dark); }
+.version-control::after {
+  content: "";
+  position: absolute;
+  right: 14px; top: 50%;
+  width: 6px; height: 6px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+.version-select {
+  appearance: none;
+  -webkit-appearance: none;
+  font: inherit;
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--ink-invert);
+  background: var(--chrome-deep);
+  border: 1px solid var(--chrome-control-line);
+  border-radius: var(--radius-sm);
+  min-height: 44px;
+  padding: 8px 36px 8px 12px;
+  cursor: pointer;
+  color-scheme: dark;   /* the open list follows the header, not the page */
+  transition: border-color .14s var(--ease);
+}
+@media (hover: hover) {
+  .version-select:hover { border-color: var(--ink-on-dark); }
+}
+/* the page ring's inner band is the card surface, which vanishes on the header */
+.site-header :focus-visible {
+  box-shadow: 0 0 0 2px var(--chrome), 0 0 0 4px var(--focus-on-chrome);
+}
 
 /* stoplight: lamps sit in a housing, lit by an inset highlight and a
    real offset shadow - not a zero-offset halo */
@@ -322,6 +368,114 @@ h3 {
 .tier-blocked { border-color: var(--red-line); background: var(--red-tint); }
 .tier-blocked .tier-label { color: var(--red-ink); }
 
+/* ---------------- prompt anatomy (v2) ---------------- */
+.parts {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: grid; gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+  counter-reset: part;
+}
+.part {
+  min-width: 0;
+  display: flex; flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  background: var(--surface-sunken);
+  counter-increment: part;
+}
+/* the number reuses the answer-key chip, so "four parts" reads as a sequence */
+.part-label { display: flex; align-items: center; gap: 10px; font-weight: 650; font-size: .9rem; margin-bottom: 6px; }
+.part-label::before {
+  content: counter(part);
+  flex-shrink: 0;
+  width: 22px; height: 22px;
+  display: grid; place-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--surface-inset);
+  color: var(--ink-soft);
+  font-size: .74rem; font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.part p { margin: 0; font-size: .86rem; color: var(--ink-soft); }
+/* pushed to the foot of the card, so the four examples line up across a row */
+.part-eg {
+  display: block;
+  margin-top: auto;
+  padding-top: 10px;
+  font-size: .82rem;
+  color: var(--ink);
+  overflow-wrap: break-word;
+}
+
+/* ---------------- autonomy ladder (v3) ---------------- */
+/* four bars rising to the stage; decorative, the stage name carries it */
+.rungs {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  width: 22px; height: 18px;
+}
+.rungs span {
+  flex: 1;
+  border-radius: 1px;
+  background: var(--surface-inset);
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+}
+.rungs span:nth-child(1) { height: 25%; }
+.rungs span:nth-child(2) { height: 50%; }
+.rungs span:nth-child(3) { height: 75%; }
+.rungs span:nth-child(4) { height: 100%; }
+.rungs span.is-on { background: var(--action); box-shadow: none; }
+
+.ladder { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.rung {
+  display: grid;
+  grid-template-columns: 11.5rem 1fr;
+  gap: 2px 18px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunken);
+}
+.rung-head { grid-row: span 3; display: flex; align-items: flex-start; gap: 12px; }
+.rung-head .rungs { margin-top: 3px; }
+.rung-stage {
+  display: block;
+  font-size: .72rem; font-weight: 700;
+  letter-spacing: .07em; text-transform: uppercase;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+.rung-name { display: block; font-weight: 650; font-size: .95rem; }
+.rung-line { margin: 0; font-size: .88rem; color: var(--ink-soft); }
+.rung-line b { color: var(--ink); font-weight: 650; }
+.rung-gate { margin: 4px 0 0; font-size: .82rem; color: var(--ink-muted); font-style: italic; }
+.ladder-note { margin: 12px 0 0; font-size: .9rem; font-weight: 600; }
+
+.never {
+  margin-top: 24px;
+  padding: 16px 18px;
+  border: 1px solid var(--red-line);
+  border-radius: var(--radius-sm);
+  background: var(--red-tint);
+}
+.never-title { margin: 0 0 8px; font-weight: 700; font-size: .92rem; color: var(--red-ink); }
+.never ul { margin: 0; padding-left: 18px; columns: 2; column-gap: 32px; font-size: .88rem; }
+.never li { break-inside: avoid; margin-bottom: 5px; }
+
+.verify-lede { margin: 0 0 12px; font-size: .92rem; color: var(--ink-soft); }
+.checks { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.checks li {
+  padding: 4px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  font-size: .84rem; font-weight: 600;
+}
+
 .start-meta {
   display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
   margin: 26px 0 22px;
@@ -390,6 +544,43 @@ h3 {
   overflow-wrap: break-word;
 }
 
+/* v2: the heading names the scenario, in the same voice as the section
+   labels; the question after the story carries the weight */
+.has-scenario .q-prompt {
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 12px;
+}
+.sc-text { margin: 0 0 14px; overflow-wrap: break-word; }
+.q-ask {
+  font-size: 1.12rem;
+  font-weight: 650;
+  line-height: 1.45;
+  margin: 22px 0 18px;
+  overflow-wrap: break-word;
+}
+
+/* what someone typed, and what the tool said back: told apart by label
+   and surface, not by colour alone */
+.exchange {
+  margin: 0 0 14px;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunken);
+}
+.exchange-input { background: var(--action-tint); }
+.exchange-label {
+  margin-bottom: 4px;
+  font-size: .7rem; font-weight: 700;
+  letter-spacing: .07em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.exchange-text { margin: 0; font-size: .95rem; overflow-wrap: break-word; }
+
 /* ---------------- options ---------------- */
 .options { display: grid; gap: 10px; }
 
@@ -447,6 +638,32 @@ h3 {
 .opt-YELLOW .opt-swatch { background: var(--amber-lamp); }
 .opt-GREEN  .opt-swatch { background: var(--green-lamp); }
 
+.opt-ladder .opt-text { font-weight: 650; }
+.opt-ladder .opt-sub {
+  display: block; font-weight: 400; font-size: .84rem; color: var(--ink-soft);
+}
+
+/* spot-the-problem: each line is a toggle. The tick is a shape, so the
+   flagged state does not rest on colour; aria-pressed carries it to AT */
+.spot-box {
+  flex-shrink: 0;
+  width: 20px; height: 20px;
+  display: grid; place-items: center;
+  border: 1.5px solid var(--control-line);
+  border-radius: 4px;
+  background: var(--surface);
+}
+.spot-line[aria-pressed="true"] { border-color: var(--action); background: var(--action-tint); }
+.spot-line[aria-pressed="true"] .spot-box { background: var(--action); border-color: var(--action); }
+.spot-line[aria-pressed="true"] .spot-box::after {
+  content: "";
+  width: 5px; height: 10px;
+  border: solid var(--on-action);
+  border-width: 0 2px 2px 0;
+  transform: translateY(-1px) rotate(45deg);
+}
+.opt-note { display: block; margin-top: 6px; font-size: .86rem; color: var(--ink-soft); }
+
 /* answered states */
 .opt.is-correct { border-color: var(--green-ink); background: var(--green-tint); }
 .opt.is-wrong   { border-color: var(--red-ink);   background: var(--red-tint); }
@@ -489,6 +706,9 @@ h3 {
   display: block; font-size: .72rem; letter-spacing: .07em;
   text-transform: uppercase; color: var(--ink-soft); margin-bottom: 4px;
 }
+.fb-lesson { font-weight: 600; }
+
+.feedback .exchange { margin: 14px 0 0; background: var(--surface); }
 
 .fb-source, .rv-source {
   margin: 14px 0 0;
@@ -514,6 +734,7 @@ h3 {
 .mini-legend ul { margin: 4px 0 0; padding-left: 18px; }
 .mini-legend li { margin-bottom: 4px; }
 .mini-legend b { letter-spacing: .04em; }
+.mini-note { margin: 8px 0 0; }
 .ml-RED b    { color: var(--red-ink); }
 .ml-YELLOW b { color: var(--amber-ink); }
 .ml-GREEN b  { color: var(--green-ink); }
@@ -579,7 +800,47 @@ h3 {
 .rv-why { margin: 0 0 0 32px; font-size: .88rem; color: var(--ink-soft); }
 .rv-action { margin-top: 8px; }
 .rv-action strong { color: var(--ink); font-weight: 650; }
+.rv-lesson { color: var(--ink); }
 .rv-source { margin-left: 32px; }
+
+.rv-title {
+  margin: 0 0 2px;
+  font-size: .72rem; font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.rv-scenario { margin: 0 0 10px 32px; font-size: .88rem; }
+.rv-scenario summary {
+  cursor: pointer;
+  padding: 8px 0;
+  font-weight: 600;
+  color: var(--ink-soft);
+  border-radius: var(--radius-sm);
+}
+.rv-scenario .sc-text { margin: 4px 0 10px; }
+.rv-scenario .exchange { padding: 10px 14px; margin-bottom: 10px; }
+.rv-scenario .exchange-text { font-size: .86rem; }
+.review .rv-prompt { margin: 10px 0 0 32px; }
+.review .rv-prompt .exchange-text { font-size: .86rem; }
+
+.rv-lines {
+  margin: 0 0 10px 32px;
+  padding-left: 20px;
+  font-size: .86rem;
+  color: var(--ink-muted);
+}
+.rv-line { margin-bottom: 6px; padding-left: 2px; }
+.rv-line-status {
+  display: block;
+  font-size: .7rem; font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase;
+}
+.rv-line-text { display: block; }
+.rv-line-note { display: block; margin-top: 2px; color: var(--ink-soft); }
+.rv-line.is-caught, .rv-line.is-missed, .rv-line.is-flagged { color: var(--ink); }
+.rv-line.is-caught .rv-line-status { color: var(--green-ink); }
+.rv-line.is-missed .rv-line-status,
+.rv-line.is-flagged .rv-line-status { color: var(--red-ink); }
 
 .pill {
   display: inline-block; padding: 2px 8px;
@@ -611,13 +872,23 @@ h3 {
   .breakdown { grid-template-columns: repeat(2, 1fr); }
 }
 
+@media (max-width: 560px) {
+  .parts { grid-template-columns: 1fr; }
+  .rung { grid-template-columns: 1fr; gap: 4px; }
+  .rung-head { grid-row: auto; margin-bottom: 4px; align-items: center; }
+  .rung-head .rungs { margin-top: 0; }
+  .never ul { columns: 1; }
+  /* once the picker drops under the title, it lines up with it */
+  .version-field { margin-left: 0; }
+}
+
 @media (max-width: 620px) {
   .card { padding: 20px; }
   .legend-item { grid-template-columns: 1fr; gap: 6px; }
   .quiz-footer { flex-direction: column-reverse; align-items: stretch; }
   .quiz-footer .btn { width: 100%; }
   .result-score { font-size: 2.8rem; }
-  .rv-answers, .rv-why, .rv-source { margin-left: 0; }
+  .rv-answers, .rv-why, .rv-source, .rv-scenario, .review .rv-prompt, .rv-lines { margin-left: 0; }
   .rv-top { align-items: flex-start; }
   /* let the status label drop to its own line instead of squeezing the rule text */
   .opt { flex-wrap: wrap; }
@@ -627,11 +898,14 @@ h3 {
 /* Windows high-contrast: backgrounds are stripped, so the colour coding has
    to survive on borders and the text labels that already carry it */
 @media (forced-colors: active) {
-  .legend-item, .opt, .feedback, .tier, .bd-cell, .pill, .result-verdict {
+  .legend-item, .opt, .feedback, .tier, .bd-cell, .pill, .result-verdict,
+  .part, .checks li, .exchange, .version-select, .rung, .never {
     border: 1px solid CanvasText;
   }
-  .opt.is-correct, .opt.is-wrong { border-width: 3px; }
-  .legend-chip::before, .opt-swatch, .dot { forced-color-adjust: none; }
+  .opt.is-correct, .opt.is-wrong, .spot-line[aria-pressed="true"] { border-width: 3px; }
+  .legend-chip::before, .opt-swatch, .dot, .rungs { forced-color-adjust: none; }
+  .spot-box { border-color: CanvasText; }
+  .spot-line[aria-pressed="true"] .spot-box::after { border-color: CanvasText; }
   :focus-visible { outline: 2px solid Highlight; box-shadow: none; }
 }
 

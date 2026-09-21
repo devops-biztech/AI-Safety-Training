@@ -1,9 +1,24 @@
-# AI Data Handling Quiz (prototype)
+# AI Quizzes (prototype)
 
-A 20-question training quiz that teaches a three-color system for deciding what
-data may be shared with AI tools.
+Three 20-question training quizzes in one app. A **Version** dropdown in the header
+switches between them, and the browser remembers the last one used (first visit
+opens v2).
 
-All content is derived from the documents in [`policies/`](policies/).
+| Version | Audience | Teaches | Bank |
+|---------|----------|---------|------|
+| **v1 · Data handling** | Everyone | A three-color system for deciding what data may be shared with AI tools | `questions.js` |
+| **v2 · Prompt and verify** | Everyone | How to write a prompt that gets a usable answer, and what to check before relying on it | `questions-v2.js` |
+| **v3 · Agents (managers)** | Managers, department heads, executives | What AI agents may do on their own, and the permissions, vendor terms, testing, and incident response around them | `questions-v3.js` |
+
+Together the three cover what goes into AI (v1), what comes out (v2), and what it does
+on its own (v3).
+
+Sections marked (v1) describe the data-handling quiz; [v2](#v2-prompt-and-verify) and
+[v3](#v3-agents-for-managers) have their own sections.
+
+## v1: Data handling
+
+All v1 content is derived from the documents in [`policies/`](policies/).
 
 | Color | Rule | Covers |
 |-------|------|--------|
@@ -26,12 +41,14 @@ xdg-open index.html
 
 | File | Purpose |
 |------|---------|
-| `index.html` | Page shell: start screen, quiz screen, results screen |
+| `index.html` | Page shell: header with version picker, start screen, quiz screen, results screen. Version-specific markup carries `data-version="v1"` or `"v2"` |
 | `styles.css` | All styling. Colors and spacing are CSS variables in `:root` |
-| `questions.js` | **The question bank** — edit this to change content |
-| `app.js` | Quiz logic: rendering, scoring, feedback, review |
+| `questions.js` | **The v1 question bank** — edit this to change v1 content |
+| `questions-v2.js` | **The v2 question bank** — edit this to change v2 content |
+| `questions-v3.js` | **The v3 question bank** and the autonomy ladder (`STAGES`) — edit this to change v3 content |
+| `app.js` | Quiz logic: versions, rendering, scoring, feedback, review. Per-version header copy and results breakdown live in `VERSIONS` at the top |
 
-## Design decisions
+## Design decisions (v1)
 
 - **12 classification questions** (pick RED/YELLOW/GREEN) + **8 process questions**
   (approved tools, vendor contract terms, the Yellow authorization checklist, escalation,
@@ -56,7 +73,7 @@ xdg-open index.html
 - Color is never the only signal. Every color is paired with its text label, so the
   quiz works for colorblind users.
 
-## Editing the questions
+## Editing v1 questions
 
 Everything lives in `questions.js`. Two shapes:
 
@@ -93,7 +110,7 @@ Other knobs:
 - Color names and descriptions: the `COLORS` object at the top of `questions.js`.
   These drive the start-screen legend, the answer buttons, and the in-quiz reminder.
 
-## Answer key
+## Answer key (v1)
 
 | # | Answer | Topic | Policy source |
 |---|--------|-------|---------------|
@@ -128,7 +145,7 @@ reason. The color follows the information, not the department or the owner.
 Question 11 is the inheritance rule — a Green task becomes Red the moment Red
 information is pasted into it.
 
-## Known gaps
+## Known gaps (v1)
 
 Twenty questions cannot cover three policy documents. Not currently tested:
 
@@ -140,6 +157,194 @@ Twenty questions cannot cover three policy documents. Not currently tested:
 - Everything in the leader governance policy except the inheritance rule: agentic AI,
   the autonomy ladder, integrations, agent permissions, testing, and audits. That doc
   is written for managers and the C-suite and would suit a separate leader quiz.
+
+## v2: Prompt and verify
+
+v1 covers what you may put into an AI tool. v2 covers how to ask it well and what to
+check before you rely on the answer. It leaves data classification to v1.
+
+Question 1 is the replacement-part scenario: Sam's vague prompt, the confident but
+wrong answer, the better prompt, and the check against the manufacturer and
+distributor. The other 19 scenarios apply the same idea in other settings.
+
+### Design decisions
+
+- **Every item is a short story followed by one A–D question**, and the question
+  changes from item to item: what went wrong, which prompt is best, what to check,
+  what to do next. The story shows what someone typed to the AI (**Prompt**) and what it
+  said back (**AI response**) as separate labelled blocks.
+- **The feedback teaches the fix**, not just the answer: the explanation, then a
+  **better prompt** where one fits, **In practice** (what the person actually does), and
+  a one-line **Lesson**.
+- **Three skills instead of three colors.** Each question has a `skill`: `prompt`
+  (asking well, 8 questions), `verify` (checking the output, 7), or `own` (who decides
+  and who is accountable, 5). The results breakdown counts misses per skill.
+- **The start screen sets out the method** the questions test: the four parts of a good
+  prompt (goal, exact specifications, constraints, desired output), then which facts to
+  verify and what to check them against.
+- **Length gives nothing away.** Answers are spread 5/5/5/5 across A–D, and the correct
+  option is the longest in only 5 of 20 questions.
+- **Characters have no pronouns**, only names, so every scenario reads the same
+  regardless of who is taking it.
+
+### Editing v2 questions
+
+```js
+{
+  id: 1,
+  type: "choice",
+  skill: "prompt",                  // "prompt" | "verify" | "own"
+  tag: "Field Service",             // shown with the source in the review
+  title: "The confident parts quote",
+  scenario: [                       // the story, in order
+    "A customer needs a replacement part. Sam asks AI:",   // paragraph
+    { input: "Find a replacement part for this device." }, // what was typed
+    { output: "..." },                                     // what the AI said
+  ],
+  prompt: "What should Sam do before quoting the customer?", // the question
+  options: [{ id: "a", text: "..." }, ...],                  // keep to 4
+  answer: "c",
+  why: "...",
+  betterPrompt: "...",              // optional
+  action: "...",                    // optional "In practice" line
+  lesson: "...",                    // optional takeaway
+  source: "Employee policy - ...",  // or "Good practice"
+}
+```
+
+### Answer key
+
+| # | Answer | Skill | Topic | Source |
+|---|--------|-------|-------|--------|
+| 1 | C | prompt | Replacement part: vague prompt, stale price and stock | Employee — Promise 2; Final test |
+| 2 | B | verify | A citation that does not exist | Employee — Final test; Leader — Hallucination |
+| 3 | D | prompt | Late-delivery reply: the four-part prompt | Good practice; Employee — Promise 3 |
+| 4 | A | verify | Safety requirement: time- and place-sensitive | Employee — Final test; Yellow |
+| 5 | C | verify | AI "double-checking" its own math | Employee — Final test |
+| 6 | B | prompt | Summary with no audience or format | Good practice |
+| 7 | A | prompt | "Fill every cell" invents a warranty | Good practice; Leader — Hallucination |
+| 8 | D | verify | Summary drops the exceptions | Employee — Yellow |
+| 9 | C | own | AI answer vs. official policy page | Employee — Yellow; Promise 3 |
+| 10 | A | prompt | One giant prompt vs. small steps | Good practice; Employee — Yellow |
+| 11 | D | own | Review scaled to the stakes | Employee — Final test |
+| 12 | B | verify | Confident tone is not evidence | Leader — Troubleshooting principle |
+| 13 | A | prompt | Examples and specs over adjectives | Employee — Green; Promise 5 |
+| 14 | C | verify | Formula that runs but may be wrong | Leader — Silent failure |
+| 15 | D | own | AI draft "guarantees" a delivery date | Employee — Promise 3; Yellow |
+| 16 | B | prompt | Ask for the assumptions behind an estimate | Good practice; Employee — Final test |
+| 17 | C | verify | Invented quote and statistic | Employee — Promise 5; Green |
+| 18 | A | own | Correct the source, not just your copy | Employee — Promise 6; Leader — Hallucination |
+| 19 | D | prompt | Outdated answer: bring the current source | Good practice; Leader — Hallucination |
+| 20 | B | own | "The AI gave it to me" | Employee — The point |
+
+### Before real use (v2)
+
+The policies say to verify AI output and keep people accountable. They do not say how
+to write a prompt. Where v2 teaches prompting technique, the source line says
+**Good practice**, not a policy section. Have the policy owner confirm or adopt:
+
+- **Questions 3, 6, 7, 10, 16 and 19**, whose answers rest partly or wholly on good
+  practice.
+- **The four-part prompt method** on the start screen (goal, exact specifications,
+  constraints, desired output). It comes from the replacement-part example, not the
+  PDFs.
+- **Questions 2, 7, 12, 14, 18 and 19 cite the leader governance policy** (its
+  troubleshooting principle and failure-mode table), which is written for managers.
+  The principles apply to everyone, but the employee policy does not state them.
+
+## v3: Agents, for managers
+
+v3 is written for managers, department heads, and executives, and every answer comes
+from the leader governance policy. This covers most of what the README's v1 "Known gaps"
+listed as untested: agentic AI, the autonomy ladder, integrations, agent permissions,
+testing, audits, and the remaining vendor contract terms.
+
+### Design decisions
+
+- **Three kinds of question**, so v3 doesn't feel like v2 again:
+  - **Ladder (6):** four buttons, one per stage of the autonomy ladder. Most ask which
+    stage an agent is at; two ask the highest stage an agent should reach, or where a new
+    one should start. The correct answers cover all four stages.
+  - **Spot the problems (6):** a plan, access request, integration request, vendor
+    questionnaire, test plan, or log design, six lines each. The learner selects every
+    line that is a problem, then presses **Check answer**. Each has 2–3 problems.
+  - **Choice (8):** A–D decisions, mostly incident response. Answers are spread 2/2/2/2
+    across A–D.
+- **Spot-the-problem is scored all-or-nothing**: a question counts as correct only when
+  every problem is found and nothing else is flagged. That keeps the 16/20 pass mark
+  meaningful. The feedback labels every line in words — *Caught*, *Missed*, or *Not a
+  problem* — with a note on why, so a near miss still teaches.
+- **Three areas in the results breakdown:** *autonomy* (the ladder and what agents must
+  never do, 8 questions), *access* (permissions, integrations, vendors, classification, 6),
+  and *oversight* (testing, audit logs, incident response, 6).
+- **The start screen shows the ladder, the "never without a person" list, and how each
+  question type works.** The ladder is built from `STAGES`, so the start screen, the
+  answer buttons, and the in-quiz reminder always match.
+- **Keyboard:** 1–4 pick a stage or an option; on spot-the-problem, 1–6 toggle lines.
+
+### Editing v3 questions
+
+```js
+// ladder: pick a stage
+{ id: 1, type: "ladder", area: "autonomy", tag: "Operations", title: "...",
+  scenario: ["..."], prompt: "Which stage of the autonomy ladder is this agent at?",
+  answer: "1",            // "1" | "2" | "3" | "4" - keys of STAGES
+  why: "...", action: "...", source: "Leader governance policy - ..." }
+
+// spot the problems: select every line that is a problem
+{ id: 2, type: "spot", area: "autonomy", tag: "Finance", title: "...",
+  scenario: ["..."], prompt: "Select every step ...",
+  lines: [
+    { text: "...", problem: false },
+    { text: "...", problem: true, note: "Why it is a problem" },  // note shown after checking
+    { text: "...", problem: false, note: "Why it is fine" },      // shown only if flagged
+  ],
+  why: "...", action: "...", source: "..." }
+
+// choice: same shape as v2 (scenario + options + answer)
+```
+
+### Answer key
+
+| # | Type | Answer | Area | Topic | Source (leader governance policy) |
+|---|------|--------|------|-------|-----------------------------------|
+| 1 | ladder | Stage 1 | autonomy | Morning ticket summary | Autonomy ladder |
+| 2 | spot | 3, 5 | autonomy | Accounts payable agent: bank details, payments | Never without authorization; Finance |
+| 3 | choice | C | oversight | Prompt injection: immediate response | Failure modes — Prompt injection |
+| 4 | ladder | Stage 2 | autonomy | Drafts reviewed and sent by a person | Autonomy ladder |
+| 5 | spot | 1, 4 | access | Access request: inherited permissions, shared key | Permission model |
+| 6 | choice | D | access | Marketing's tool for HR data | Vendor tiering; HR; Integration risk matrix |
+| 7 | ladder | Stage 1 | autonomy | First day in production | Autonomy ladder |
+| 8 | spot | 2, 3, 6 | access | Finance system integration request | Integration checklist; Risk matrix; Sandbox-first |
+| 9 | choice | A | access | Agents left by a departed employee | Permission review cycle |
+| 10 | ladder | Stage 3 | autonomy | Categorize and acknowledge tickets | Autonomy ladder |
+| 11 | spot | 1, 4, 5 | access | Vendor questionnaire | What every vendor must provide |
+| 12 | choice | B | autonomy | What Stage 3 requires | Autonomy ladder |
+| 13 | ladder | Stage 2 | autonomy | Emails in a rep's name | Never without authorization |
+| 14 | spot | 2, 3, 5 | oversight | Pre-launch test plan | Testing requirements; Sandbox-first |
+| 15 | choice | B | oversight | Salary data in a company-wide channel | Failure modes — Data leakage |
+| 16 | choice | C | access | Summaries become legal evidence | Reclassification triggers |
+| 17 | spot | 3, 6 | oversight | What to keep out of audit logs | Audit trail; What to redact |
+| 18 | ladder | Stage 4 | autonomy | Phishing quarantine run without per-action review | Autonomy ladder |
+| 19 | choice | D | oversight | "Probably a glitch" | Troubleshooting principle; Silent failure |
+| 20 | choice | A | oversight | An analyst reports an agent's mistake | Leader's commitment (6); Tabletop |
+
+### Before real use (v3)
+
+- **The ladder's "When to advance" column is ambiguous.** For stage 1 it reads as the
+  bar for *leaving* the stage (30–60 days, then on to stage 2). For stage 4 it can only
+  be the bar for *being at* the stage. The quiz reads stages 3 and 4 as requirements for
+  being at that stage: stage 3 "only after testing, audit logging, and a documented
+  rollback path." Questions 10, 12, and 18 depend on that reading, so have the policy
+  owner confirm it.
+- **Question 7 says every agent starts at stage 1.** The policy says "do not grant full
+  autonomy on day one" and lists the stages in order, but it never says outright that
+  stage 1 is mandatory.
+- **Question 18 treats quarantining phishing email as consequential** (stage 4) rather
+  than low-risk (stage 3), because holding a real business email affects the business.
+  The line between the two stages is a judgment the policy leaves to leaders.
+- The policy leaves the approver for new AI tools and agents blank ("Submit questions to
+  ____"). The footer says "submit ... for review"; name the real contact before rollout.
 
 ## Design system
 
@@ -163,9 +368,10 @@ white cards, colour tints and the primary button alike.
 
 This is a prototype. There is no persistence, no user accounts, no LMS/SCORM
 export, and no record of who completed it — results live in memory and reset on
-reload.
+reload. The only thing stored is the chosen version, in the browser's local storage.
+Because of that, two people opening the same link can land on different versions.
 
-## Before real use
+## Before real use (v1)
 
 Every answer traces to a policy section, listed in the answer key above and shown in
 the quiz itself. Have the policy owner confirm those mappings, particularly where the
