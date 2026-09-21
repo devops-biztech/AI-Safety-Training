@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Data Handling Quiz</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="brandmark" aria-hidden="true">
+      <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+    </div>
+    <div>
+      <h1>AI Data Handling Quiz</h1>
+      <p class="tagline">Knowing what you can share, and where</p>
+    </div>
+  </div>
+</header>
+
+<noscript>
+  <p class="noscript"><strong>This quiz needs JavaScript.</strong> Turn it on and reload the page,
+  or ask your manager or IT/Security for another way to complete the training.</p>
+</noscript>
+
+<main class="wrap" id="app">
+
+  <!-- ============ START SCREEN ============ -->
+  <section id="screen-start" class="screen card">
+    <h2 id="start-heading" tabindex="-1">Before you begin</h2>
+    <p class="lede">
+      AI is a tool that can help us notice, organize, draft, and learn. This quiz is not about whether
+      to use it - it is about <strong>what information you put into it</strong>. Before you put company
+      information into an AI tool, choose a color.
+    </p>
+
+    <p class="creed">Use AI to make the work better. Never use it to hand away responsibility.</p>
+
+    <div class="legend" id="legend"><!-- built by app.js --></div>
+
+    <h3>Three kinds of AI tool</h3>
+    <div class="tiers">
+      <div class="tier">
+        <span class="tier-label">Company-approved</span>
+        <p>Contracted, with a data processing agreement, a no-training clause, MFA, and audit logging. Approved for company work.</p>
+      </div>
+      <div class="tier">
+        <span class="tier-label">Department-approved</span>
+        <p>Approved for one specific use with a limited data scope. Check before you use it for something it was not approved for.</p>
+      </div>
+      <div class="tier tier-blocked">
+        <span class="tier-label">Personal or free</span>
+        <p>Consumer tools, browser extensions, personal accounts. Never for company information - general learning only.</p>
+      </div>
+    </div>
+
+    <p class="note">
+      Watch what you add along the way. An AI output <em>inherits the highest classification of any input
+      that produced it</em> - so a Green task turns Red the moment you paste Red information into it.
+    </p>
+
+    <div class="start-meta">
+      <span>20 questions</span><span aria-hidden="true">&middot;</span>
+      <span>About 8 minutes</span><span aria-hidden="true">&middot;</span>
+      <span>16 correct to pass</span>
+    </div>
+
+    <button class="btn btn-primary btn-lg" id="btn-start">Start the quiz</button>
+  </section>
+
+  <!-- ============ QUIZ SCREEN ============ -->
+  <section id="screen-quiz" class="screen card" hidden>
+    <div class="progress-row">
+      <span class="counter" id="counter">Question 1 of 20</span>
+      <span class="score-live" id="score-live">0 correct</span>
+    </div>
+    <div class="progress-track" id="progress-track" role="progressbar"
+         aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+
+    <h2 class="q-prompt" id="q-prompt" tabindex="-1">Question text</h2>
+
+    <div class="options" id="options" role="group" aria-label="Answer options"></div>
+
+    <div class="feedback" id="feedback" role="status" aria-live="polite" hidden></div>
+
+    <div class="quiz-footer">
+      <details class="mini-legend">
+        <summary>Remind me of the colors</summary>
+        <div id="mini-legend-body"></div>
+      </details>
+      <button class="btn btn-primary" id="btn-next" hidden>Next question</button>
+    </div>
+  </section>
+
+  <!-- ============ RESULTS SCREEN ============ -->
+  <section id="screen-results" class="screen" hidden>
+    <div class="card results-head" id="results-head">
+      <h2 class="sr-only" id="result-heading" tabindex="-1">Your result</h2>
+      <p class="result-verdict" id="result-verdict">Passed</p>
+      <p class="result-score"><span id="result-number">18</span><span class="result-of">/ 20</span></p>
+      <p class="result-line" id="result-line">You have a solid handle on the color system.</p>
+      <div class="breakdown" id="breakdown"></div>
+      <div class="results-actions">
+        <button class="btn btn-primary" id="btn-retry-missed">Retry missed questions</button>
+        <button class="btn btn-ghost" id="btn-restart">Start over</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 id="review-title">What you missed</h2>
+      <p class="lede" id="review-lede">Only the questions you got wrong, with the reasoning behind each.</p>
+      <ol class="review" id="review"></ol>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Based on the company AI policy and the plain-language vendor terms guide. When in doubt, treat it as Red and ask your manager or IT/Security.</p>
+  </div>
+</footer>
+
+<script src="questions.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
