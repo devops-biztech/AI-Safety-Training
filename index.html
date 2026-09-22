@@ -3,27 +3,28 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Prompting and Verification Quiz</title>
+<meta name="color-scheme" content="light dark">
+<title>AI Prompting and Verification · Biztech AI security training</title>
+<link rel="preload" href="fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/barlow-semi-condensed-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<header class="site-header">
-  <div class="wrap header-inner">
-    <div class="brandmark" aria-hidden="true">
-      <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
-    </div>
-    <div class="header-titles">
-      <h1 id="site-title">AI Prompting and Verification Quiz</h1>
-      <p class="tagline" id="site-tagline">Asking well, and checking what comes back</p>
-    </div>
-    <div class="version-field">
-      <label class="version-label" for="version-select">Version</label>
-      <span class="version-control">
-        <select class="version-select" id="version-select">
-          <option value="v1">v1 &middot; Data handling</option>
-          <option value="v2" selected>v2 &middot; Prompt and verify</option>
-          <option value="v3">v3 &middot; Agents (managers)</option>
+<header class="mast">
+  <div class="mast-inner">
+    <picture class="mast-logo">
+      <source srcset="img/biztech-logo-white.png" media="(prefers-color-scheme: dark)">
+      <img src="img/biztech-logo.png" alt="Biztech" width="571" height="204">
+    </picture>
+    <h1 class="mast-title">AI security training</h1>
+    <div class="module-field">
+      <label class="module-label" for="version-select">Module</label>
+      <span class="select-wrap">
+        <select class="module-select" id="version-select">
+          <option value="v1">AI-1 &middot; Data handling</option>
+          <option value="v2" selected>AI-2 &middot; Prompt and verify</option>
+          <option value="v3">AI-3 &middot; Agents (managers)</option>
         </select>
       </span>
     </div>
@@ -31,240 +32,377 @@
 </header>
 
 <noscript>
-  <p class="noscript"><strong>This quiz needs JavaScript.</strong> Turn it on and reload the page,
-  or ask your manager or IT/Security for another way to complete the training.</p>
+  <p class="noscript"><strong>This training needs JavaScript.</strong> Turn it on and reload the page,
+  or contact Biztech support at support@trustbiztech.com or (707) 442-8393 for another way to complete it.</p>
 </noscript>
 
-<main class="wrap" id="app">
+<div class="layout" id="layout" data-screen="start">
 
-  <!-- ============ START SCREEN ============ -->
-  <section id="screen-start" class="screen card">
-    <h2 id="start-heading" tabindex="-1">Before you begin</h2>
+<main id="app">
 
-    <!-- v1: data handling -->
-    <div data-version="v1" hidden>
-      <p class="lede">
-        AI is a tool that can help us notice, organize, draft, and learn. This quiz is not about whether
-        to use it - it is about <strong>what information you put into it</strong>. Before you put company
-        information into an AI tool, choose a color.
-      </p>
+  <!-- ============ START: the module's reference card ============ -->
+  <section id="screen-start" class="screen" aria-labelledby="start-heading">
+    <div class="panel">
+      <h2 class="module-title" id="start-heading" tabindex="-1"><span class="tag tag-navy module-code"
+        id="module-code">AI-2</span> <span id="start-title">Prompt and verify</span></h2>
 
-      <p class="creed">Use AI to make the work better. Never use it to hand away responsibility.</p>
+      <!-- AI-1: data handling -->
+      <div data-version="v1" hidden>
+        <p class="lede">
+          AI can help us notice, organize, draft, and learn. This module is not about whether to use
+          it. It is about <strong>what information you put into it</strong>. Before company information
+          goes into an AI tool, give it a color.
+        </p>
+        <p class="creed">Use AI to make the work better. Never use it to hand away responsibility.</p>
 
-      <div class="legend" id="legend"><!-- built by app.js --></div>
+        <h3 class="board-title">Three colors</h3>
+        <div class="board board-legend" id="legend" role="table" aria-label="The three colors"><!-- built by app.js --></div>
 
-      <h3>Three kinds of AI tool</h3>
-      <div class="tiers">
-        <div class="tier">
-          <span class="tier-label">Company-approved</span>
-          <p>Contracted, with a data processing agreement, a no-training clause, MFA, and audit logging. Approved for company work.</p>
+        <h3 class="board-title">Three kinds of AI tool</h3>
+        <div class="board" role="table" aria-label="Three kinds of AI tool">
+          <div class="board-row board-head" role="row">
+            <span role="columnheader">Tool</span><span role="columnheader">What it means</span>
+          </div>
+          <div class="board-row" role="row">
+            <span class="row-label" role="cell">Company-approved</span>
+            <span role="cell">Contracted, with a data processing agreement, a no-training clause, MFA, and audit logging. Approved for company work.</span>
+          </div>
+          <div class="board-row" role="row">
+            <span class="row-label" role="cell">Department-approved</span>
+            <span role="cell">Approved for one specific use with a limited data scope. Check before you use it for something it was not approved for.</span>
+          </div>
+          <div class="board-row" role="row">
+            <span class="row-label" role="cell"><span class="tag tag-red">Personal or free</span></span>
+            <span role="cell">Consumer tools, browser extensions, personal accounts. Never for company information; general learning only.</span>
+          </div>
         </div>
-        <div class="tier">
-          <span class="tier-label">Department-approved</span>
-          <p>Approved for one specific use with a limited data scope. Check before you use it for something it was not approved for.</p>
-        </div>
-        <div class="tier tier-blocked">
-          <span class="tier-label">Personal or free</span>
-          <p>Consumer tools, browser extensions, personal accounts. Never for company information - general learning only.</p>
-        </div>
+
+        <p class="note">
+          Watch what you add along the way. An AI output <strong>inherits the highest classification of any
+          input that produced it</strong>, so a Green task turns Red the moment you paste Red information into it.
+        </p>
       </div>
 
-      <p class="note">
-        Watch what you add along the way. An AI output <em>inherits the highest classification of any input
-        that produced it</em> - so a Green task turns Red the moment you paste Red information into it.
-      </p>
-    </div>
+      <!-- AI-2: prompting and verification -->
+      <div data-version="v2">
+        <p class="lede">
+          AI can help you research, draft, and narrow a search. It can also be wrong in a way that sounds
+          exactly like being right. This module is about two habits: <strong>asking for exactly what you
+          need</strong>, and <strong>checking what comes back</strong> before you rely on it.
+        </p>
+        <p class="creed">Use AI to make the work better. Never use it to hand away responsibility.</p>
 
-    <!-- v2: prompting and verification -->
-    <div data-version="v2">
-      <p class="lede">
-        AI can help you research, draft, and narrow a search. It can also be wrong in a way that sounds
-        exactly like being right. This quiz is about two habits: <strong>asking for exactly what you
-        need</strong>, and <strong>checking what comes back</strong> before you rely on it.
-      </p>
+        <h3 class="board-title">A good prompt has four parts</h3>
+        <ol class="board board-parts">
+          <li class="board-row">
+            <span class="row-num" aria-hidden="true">1</span>
+            <span class="row-label">Goal</span>
+            <span class="row-body">What you are trying to get done, and what the result is for.
+              <q class="row-eg">…for the job of [what the part must do]</q></span>
+          </li>
+          <li class="board-row">
+            <span class="row-num" aria-hidden="true">2</span>
+            <span class="row-label">Exact specifications</span>
+            <span class="row-body">The model, version, dates, or numbers that make it your situation, not the average one.
+              <q class="row-eg">a 2023 [manufacturer] [model], [specific version/configuration]</q></span>
+          </li>
+          <li class="board-row">
+            <span class="row-num" aria-hidden="true">3</span>
+            <span class="row-label">Constraints</span>
+            <span class="row-body">What it must not assume, guess, or promise, and what to do when it is unsure.
+              <q class="row-eg">Do not assume stock or pricing. Mark any uncertain information clearly.</q></span>
+          </li>
+          <li class="board-row">
+            <span class="row-num" aria-hidden="true">4</span>
+            <span class="row-label">Desired output</span>
+            <span class="row-body">The shape you need back, including sources you can check yourself.
+              <q class="row-eg">List current manufacturer part numbers… Provide official sources</q></span>
+          </li>
+        </ol>
 
-      <p class="creed">Use AI to make the work better. Never use it to hand away responsibility.</p>
-
-      <h3>A good prompt has four parts</h3>
-      <ol class="parts">
-        <li class="part">
-          <span class="part-label">Goal</span>
-          <p>What you are trying to get done, and what the result is for.</p>
-          <q class="part-eg">...for the job of [what the part must do]</q>
-        </li>
-        <li class="part">
-          <span class="part-label">Exact specifications</span>
-          <p>The model, version, dates, or numbers that make it your situation, not the average one.</p>
-          <q class="part-eg">a 2023 [manufacturer] [model], [specific version/configuration]</q>
-        </li>
-        <li class="part">
-          <span class="part-label">Constraints</span>
-          <p>What it must not assume, guess, or promise - and what to do when it is unsure.</p>
-          <q class="part-eg">Do not assume stock or pricing. Mark any uncertain information clearly.</q>
-        </li>
-        <li class="part">
-          <span class="part-label">Desired output</span>
-          <p>The shape you need back, including sources you can check yourself.</p>
-          <q class="part-eg">List current manufacturer part numbers... Provide official sources</q>
-        </li>
-      </ol>
-
-      <h3>Then verify before you rely on it</h3>
-      <p class="verify-lede">
-        Check anything that changes over time against the source of truth - the manufacturer, the
-        distributor, the official policy, the system of record. Not against the AI.
-      </p>
-      <ul class="checks">
-        <li>Compatibility</li>
-        <li>Stock</li>
-        <li>Price</li>
-        <li>Dates and deadlines</li>
-        <li>Versions</li>
-        <li>Regulations</li>
-        <li>Quotes and sources</li>
-        <li>Calculations</li>
-      </ul>
-
-      <p class="note">
-        AI can narrow the search. It is not the inventory system, the policy, or the final authority.
-        <em>Assume it may be confidently wrong until you have checked</em> - a confident tone is a
-        writing style, not evidence.
-      </p>
-    </div>
-
-    <!-- v3: agents, for managers -->
-    <div data-version="v3" hidden>
-      <p class="lede">
-        This one is for <strong>managers, department heads, and executives</strong>. A chatbot answers a
-        question; an agent takes action - it reads an email, writes a record, sends a message. You decide
-        which agents get built, what they can reach, and what happens when one goes wrong.
-      </p>
-
-      <p class="creed">AI is a tool. Accountability is a choice. Leadership is making that choice visible.</p>
-
-      <h3>The autonomy ladder</h3>
-      <ol class="ladder" id="ladder"><!-- built by app.js --></ol>
-      <p class="ladder-note">Most agents should live at Stage 1 or 2. Stage 3 is earned. Stage 4 should be rare.</p>
-
-      <div class="never">
-        <p class="never-title">Never without explicit human authorization</p>
-        <ul>
-          <li>Send payments, change bank details, or start any financial transaction</li>
-          <li>Create, change, or delete journal entries, payroll records, or tax filings</li>
-          <li>Hire, fire, promote, discipline, set pay, or change benefits</li>
-          <li>Approve purchases, contracts, or vendor changes</li>
-          <li>Change system configurations, security settings, or access permissions</li>
-          <li>Send external messages in a named person's name without their review</li>
-          <li>Access Red data, unless the agent, tool, and use case are specifically approved</li>
+        <h3 class="board-title">Then verify before you rely on it</h3>
+        <p class="board-lede">
+          Check anything that changes over time against the source of truth: the manufacturer, the
+          distributor, the official policy, the system of record. Not against the AI.
+        </p>
+        <ul class="checks">
+          <li>Compatibility</li>
+          <li>Stock</li>
+          <li>Price</li>
+          <li>Dates and deadlines</li>
+          <li>Versions</li>
+          <li>Regulations</li>
+          <li>Quotes and sources</li>
+          <li>Calculations</li>
         </ul>
+
+        <p class="note">
+          AI can narrow the search. It is not the inventory system, the policy, or the final authority.
+          <strong>Assume it may be confidently wrong until you have checked.</strong> A confident tone is a
+          writing style, not evidence.
+        </p>
       </div>
 
-      <h3>Three kinds of question</h3>
-      <div class="tiers">
-        <div class="tier">
-          <span class="tier-label">Place it on the ladder</span>
-          <p>Read what an agent does, and pick its stage - or the highest stage it should reach.</p>
+      <!-- AI-3: agents, for managers -->
+      <div data-version="v3" hidden>
+        <p class="lede">
+          This one is for <strong>managers, department heads, and executives</strong>. A chatbot answers a
+          question; an agent takes action. It reads an email, writes a record, sends a message. You decide
+          which agents get built, what they can reach, and what happens when one goes wrong.
+        </p>
+        <p class="creed">AI is a tool. Accountability is a choice. Leadership is making that choice visible.</p>
+
+        <h3 class="board-title">The autonomy ladder</h3>
+        <ol class="board board-ladder" id="ladder"><!-- built by app.js --></ol>
+        <p class="board-lede board-after">Most agents should live at Stage 1 or 2. Stage 3 is earned. Stage 4 should be rare.</p>
+
+        <div class="never">
+          <h3 class="never-title">Never without explicit human authorization</h3>
+          <ul>
+            <li>Send payments, change bank details, or start any financial transaction</li>
+            <li>Create, change, or delete journal entries, payroll records, or tax filings</li>
+            <li>Hire, fire, promote, discipline, set pay, or change benefits</li>
+            <li>Approve purchases, contracts, or vendor changes</li>
+            <li>Change system configurations, security settings, or access permissions</li>
+            <li>Send external messages in a named person's name without their review</li>
+            <li>Access Red data, unless the agent, tool, and use case are specifically approved</li>
+          </ul>
         </div>
-        <div class="tier">
-          <span class="tier-label">Spot the problems</span>
-          <p>Select every line that is a problem, then check. Correct only if you find them all and flag nothing else.</p>
+
+        <h3 class="board-title">Three kinds of question</h3>
+        <div class="board" role="table" aria-label="Three kinds of question">
+          <div class="board-row board-head" role="row">
+            <span role="columnheader">Question</span><span role="columnheader">What you do</span>
+          </div>
+          <div class="board-row" role="row">
+            <span class="row-label" role="cell">Place it on the ladder</span>
+            <span role="cell">Read what an agent does, and pick its stage, or the highest stage it should reach.</span>
+          </div>
+          <div class="board-row" role="row">
+            <span class="row-label" role="cell">Spot the problems</span>
+            <span role="cell">Select every line that is a problem, then check. Correct only if you find them all and flag nothing else.</span>
+          </div>
+          <div class="board-row" role="row">
+            <span class="row-label" role="cell">Decide what to do</span>
+            <span role="cell">An agent, a vendor, or an incident needs a decision. Pick the best of four.</span>
+          </div>
         </div>
-        <div class="tier">
-          <span class="tier-label">Decide what to do</span>
-          <p>An agent, a vendor, or an incident needs a decision. Pick the best of four.</p>
-        </div>
+
+        <p class="note">
+          Grant the minimum permissions necessary, and revoke them when the work is done. Test in a sandbox
+          before anything reaches production. <strong>Build the audit trail before you need it.</strong>
+        </p>
       </div>
 
-      <p class="note">
-        Grant the minimum permissions necessary, and revoke them when the work is done. Test in a sandbox
-        before anything reaches production. <em>Build the audit trail before you need it.</em>
-      </p>
+      <p class="source-line" data-version="v1" hidden>Based on the company AI policy and the plain-language
+      vendor terms guide. When in doubt, treat it as Red and ask Biztech support.</p>
+      <p class="source-line" data-version="v2">Based on the company AI policy, plus good prompting practice where
+      the policy is silent. AI can help narrow the search; a person verifies and decides.</p>
+      <p class="source-line" data-version="v3" hidden>Based on the leader AI governance policy. Submit any new AI
+      tool, agent, or integration for review before proceeding.</p>
     </div>
-
-    <div class="start-meta">
-      <span id="meta-count">20 questions</span><span aria-hidden="true">&middot;</span>
-      <span id="meta-minutes">About 12 minutes</span><span aria-hidden="true">&middot;</span>
-      <span id="meta-pass">16 correct to pass</span>
-    </div>
-
-    <button class="btn btn-primary btn-lg" id="btn-start">Start the quiz</button>
   </section>
 
-  <!-- ============ QUIZ SCREEN ============ -->
-  <section id="screen-quiz" class="screen card" hidden>
-    <div class="progress-row">
-      <span class="counter" id="counter">Question 1 of 20</span>
-      <span class="score-live" id="score-live">0 correct</span>
-    </div>
-    <div class="progress-track" id="progress-track" role="progressbar"
-         aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0">
-      <div class="progress-fill" id="progress-fill"></div>
-    </div>
+  <!-- ============ QUIZ ============ -->
+  <section id="screen-quiz" class="screen" hidden aria-label="Question">
+    <div class="panel q-panel">
+      <!-- AI-1 choice/color: the question itself. With a scenario: its title, the story, then the question -->
+      <!-- the item number is on the pass and the board; a screen reader hears it here -->
+      <h2 class="q-prompt" id="q-prompt" tabindex="-1"><span class="sr-only" id="q-pos"></span><span
+        id="q-text">Question text</span></h2>
+      <div class="scenario" id="q-scenario" hidden></div>
+      <p class="q-ask" id="q-ask" hidden></p>
 
-    <!-- v1: the question itself. v2: the scenario title, then the story and the question -->
-    <h2 class="q-prompt" id="q-prompt" tabindex="-1">Question text</h2>
-    <div class="scenario" id="q-scenario" hidden></div>
-    <p class="q-ask" id="q-ask" hidden></p>
+      <div class="options-head" id="options-head" aria-hidden="true"></div>
+      <div class="options" id="options" role="group" aria-labelledby="q-prompt"></div>
 
-    <div class="options" id="options" role="group" aria-labelledby="q-prompt"></div>
+      <!-- no live region: app.js moves focus to the verdict, which reads it -->
+      <div class="feedback" id="feedback" hidden></div>
 
-    <div class="feedback" id="feedback" role="status" aria-live="polite" hidden></div>
+      <div class="q-foot">
+        <p class="support">Not sure? <strong>Biztech support</strong> ·
+          <a href="mailto:support@trustbiztech.com">support@trustbiztech.com</a> ·
+          <a href="tel:+17074428393">(707) 442-8393</a></p>
+        <button class="btn btn-primary" id="btn-check" hidden>Check answer</button>
+        <button class="btn btn-primary" id="btn-next" hidden>Next item</button>
+      </div>
 
-    <div class="quiz-footer">
-      <details class="mini-legend" data-version="v1" hidden>
+      <details class="reminder" data-version="v1" hidden>
         <summary>Remind me of the colors</summary>
         <div id="mini-legend-body"></div>
       </details>
-      <details class="mini-legend" data-version="v2">
+      <details class="reminder" data-version="v2">
         <summary>Remind me of the habits</summary>
         <ul>
-          <li><b>Goal</b> - what you need done, and what it is for</li>
-          <li><b>Specifics</b> - model, version, dates, numbers</li>
-          <li><b>Constraints</b> - no assuming, mark what is uncertain</li>
-          <li><b>Output</b> - the shape you need, with sources</li>
-          <li><b>Verify</b> - time-sensitive facts, against the source of truth</li>
+          <li><b>Goal:</b> what you need done, and what it is for</li>
+          <li><b>Specifics:</b> model, version, dates, numbers</li>
+          <li><b>Constraints:</b> no assuming; mark what is uncertain</li>
+          <li><b>Output:</b> the shape you need, with sources</li>
+          <li><b>Verify:</b> time-sensitive facts, against the source of truth</li>
         </ul>
       </details>
-      <details class="mini-legend" data-version="v3" hidden>
+      <details class="reminder" data-version="v3" hidden>
         <summary>Remind me of the ladder</summary>
         <div id="mini-ladder-body"></div>
       </details>
-      <button class="btn btn-primary" id="btn-check" hidden>Check answer</button>
-      <button class="btn btn-primary" id="btn-next" hidden>Next question</button>
+    </div>
+
+    <div class="panel gate">
+      <h2 class="gate-title">Items</h2>
+      <ol class="gate-board" id="gate-board"><!-- built by app.js --></ol>
     </div>
   </section>
 
-  <!-- ============ RESULTS SCREEN ============ -->
-  <section id="screen-results" class="screen" hidden>
-    <div class="card results-head" id="results-head">
-      <h2 class="sr-only" id="result-heading" tabindex="-1">Your result</h2>
-      <p class="result-verdict" id="result-verdict">Passed</p>
-      <p class="result-score"><span id="result-number">18</span><span class="result-of">/ 20</span></p>
+  <!-- ============ RESULTS ============ -->
+  <section id="screen-results" class="screen" hidden aria-labelledby="result-heading">
+    <div class="panel result-panel">
+      <h2 class="result-title" id="result-heading" tabindex="-1">You passed</h2>
       <p class="result-line" id="result-line">You have a solid handle on the color system.</p>
-      <div class="breakdown" id="breakdown"></div>
-      <div class="results-actions">
-        <button class="btn btn-primary" id="btn-retry-missed">Retry missed questions</button>
-        <button class="btn btn-ghost" id="btn-restart">Start over</button>
+      <div class="board board-breakdown" id="breakdown" role="table" aria-label="Missed by area"></div>
+      <div class="result-actions">
+        <button class="btn btn-primary" id="btn-print" hidden>Print certificate</button>
+        <button class="btn btn-primary" id="btn-retry-missed">Retry missed items</button>
+        <button class="btn btn-quiet" id="btn-restart">Start over</button>
       </div>
     </div>
 
-    <div class="card">
-      <h2 id="review-title">What you missed</h2>
-      <p class="lede" id="review-lede">Only the questions you got wrong, with the reasoning behind each.</p>
+    <div class="panel gate">
+      <h2 class="gate-title">Items</h2>
+      <ol class="gate-board" id="gate-board-final"></ol>
+    </div>
+
+    <div class="panel review-panel" id="review-panel">
+      <h2 class="review-title" id="review-title">What you missed</h2>
+      <p class="lede" id="review-lede">Only the items you got wrong, with the reasoning behind each.</p>
       <ol class="review" id="review"></ol>
     </div>
   </section>
 
 </main>
 
-<footer class="site-footer">
-  <div class="wrap">
-    <p data-version="v1" hidden>Based on the company AI policy and the plain-language vendor terms guide. When in doubt, treat it as Red and ask your manager or IT/Security.</p>
-    <p data-version="v2">Based on the company AI policy, plus good prompting practice where the policy is silent. AI can help narrow the search; a person verifies and decides.</p>
-    <p data-version="v3" hidden>Based on the leader AI governance policy. Submit any new AI tool, agent, or integration for review before proceeding.</p>
+<!-- ============ THE TRAINING PASS ============ -->
+<aside class="pass" id="pass" data-state="issue" aria-labelledby="pass-title">
+  <div class="pass-band">
+    <img src="img/biztech-logo-white.png" alt="" width="555" height="193">
+    <span id="pass-title">Training pass</span>
   </div>
-</footer>
 
+  <!-- issue: the learner fills in their own pass -->
+  <form class="pass-form" id="pass-form" novalidate>
+    <div class="field">
+      <label class="k" for="f-name">Full name</label>
+      <input id="f-name" name="name" type="text" autocomplete="name" required maxlength="120"
+             aria-describedby="f-name-err">
+      <p class="field-err" id="f-name-err" hidden></p>
+    </div>
+    <div class="field">
+      <label class="k" for="f-email">Work email</label>
+      <input id="f-email" name="email" type="email" autocomplete="email" required maxlength="160"
+             placeholder="name@company.com" aria-describedby="f-email-err">
+      <p class="field-err" id="f-email-err" hidden></p>
+    </div>
+    <div class="field">
+      <label class="k" for="f-company">Company</label>
+      <input id="f-company" name="company" type="text" autocomplete="organization" required maxlength="120"
+             aria-describedby="f-company-err">
+      <p class="field-err" id="f-company-err" hidden></p>
+    </div>
+    <dl class="pass-figures">
+      <div><dt class="k">Items</dt><dd class="v" id="meta-count">20</dd></div>
+      <div><dt class="k">About</dt><dd class="v" id="meta-minutes">12 min</dd></div>
+      <div><dt class="k">To pass</dt><dd class="v" id="meta-pass">16</dd></div>
+    </dl>
+    <p class="load-error" id="load-error" role="alert" hidden><strong>The questions did not load, so this
+    module cannot start.</strong> Reload the page. If it still does not start, contact Biztech support at
+    support@trustbiztech.com or (707) 442-8393.</p>
+    <button class="btn btn-primary btn-wide" id="btn-start" type="submit">Issue pass &amp; start</button>
+  </form>
+
+  <!-- active and complete: the issued pass -->
+  <div class="pass-issued" id="pass-issued" hidden>
+    <div class="seg seg-learner">
+      <span class="k">Learner</span>
+      <span class="pass-name" id="p-name"></span>
+      <span class="pass-email" id="p-email"></span>
+    </div>
+    <div class="seg seg-company">
+      <span class="k">Company</span>
+      <span class="v" id="p-company"></span>
+    </div>
+    <div class="seg seg-module">
+      <span class="k">Module</span>
+      <span class="v" id="p-module"></span>
+    </div>
+    <dl class="seg pass-figures" id="p-figures">
+      <div class="fig-item"><dt class="k" id="p-item-label">Item</dt><dd class="v" id="p-item">01/20</dd></div>
+      <div class="fig-pass"><dt class="k">To pass</dt><dd class="v" id="p-to-pass">16</dd></div>
+      <div class="fig-correct"><dt class="k">Correct</dt><dd class="v" id="score-live">0</dd></div>
+    </dl>
+    <div class="progress-track" id="progress-track" role="progressbar"
+         aria-label="Module progress" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+    <svg class="pass-code" id="pass-code" aria-hidden="true" focusable="false" preserveAspectRatio="none"></svg>
+    <div class="pass-meta">
+      <span class="k" id="p-record">Record</span>
+      <span class="k" id="p-time">Issued</span>
+    </div>
+  </div>
+
+  <div class="stub" id="stub">
+    <span class="k">Stub · Biztech copy</span>
+    <p class="stub-text" id="stub-text">Your result goes to Biztech when you finish, pass or not. Pass, and you also get a certificate to print.</p>
+    <button class="btn btn-quiet btn-small" id="btn-resend" hidden>Try sending again</button>
+  </div>
+</aside>
+
+</div>
+
+<!-- ============ CERTIFICATE (print only) ============ -->
+<div class="certificate" id="certificate">
+  <div class="cert-frame">
+    <img class="cert-logo" src="img/biztech-logo.png" alt="Biztech" width="571" height="204">
+
+    <p class="cert-title">Certificate</p>
+    <p class="cert-sub">of completion</p>
+    <div class="cert-divider" aria-hidden="true"><span></span><i></i><span></span></div>
+
+    <p class="cert-presented">This certifies that</p>
+    <p class="cert-name" id="c-name"></p>
+    <p class="cert-company">of <span id="c-company"></span></p>
+
+    <p class="cert-prose">has completed <strong id="c-module"></strong>, a module of the Biztech AI
+      security training, with a score of <strong id="c-score"></strong>.</p>
+
+    <div class="cert-foot">
+      <div class="cert-block">
+        <span class="cert-block-value" id="c-date"></span>
+        <span class="cert-block-label">Date awarded</span>
+      </div>
+
+      <svg class="cert-seal" viewBox="0 0 120 152" aria-hidden="true" focusable="false">
+        <path d="M42 92 L32 150 L60 133 L88 150 L78 92 Z" fill="#1a4321"/>
+        <path d="M42 92 L60 133 L78 92 Z" fill="#11301c"/>
+        <circle cx="60" cy="60" r="46" fill="#164679"/>
+        <circle cx="60" cy="60" r="39" fill="none" stroke="#ffffff" stroke-width="1.2" opacity=".85"/>
+        <circle cx="60" cy="60" r="36" fill="none" stroke="#ffffff" stroke-width=".6" opacity=".55"/>
+        <text class="cert-seal-code" x="60" y="56" text-anchor="middle" id="c-seal-code"></text>
+        <text class="cert-seal-word" x="60" y="76" text-anchor="middle">Passed</text>
+      </svg>
+
+      <div class="cert-block">
+        <span class="cert-block-value">Biztech</span>
+        <span class="cert-block-label">Issued by</span>
+      </div>
+    </div>
+
+    <p class="cert-note">Record <span id="c-record"></span> &middot; issued to <span id="c-email"></span>
+      &middot; details as entered by the learner. Questions about this record: Biztech support,
+      support@trustbiztech.com, (707) 442-8393.</p>
+  </div>
+</div>
+
+<script src="config.js"></script>
 <script src="questions.js"></script>
 <script src="questions-v2.js"></script>
 <script src="questions-v3.js"></script>
