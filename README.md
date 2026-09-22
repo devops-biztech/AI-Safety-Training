@@ -1,14 +1,19 @@
-# AI Quizzes (prototype)
+# Biztech AI security training (prototype)
 
-Three 20-question training quizzes in one app. A **Version** dropdown in the header
-switches between them, and the browser remembers the last one used (first visit
-opens v2).
+Three 20-question training modules in one app, delivered by Biztech to its own staff and
+to client employees. A **Module** dropdown in the header switches between them, and the
+browser remembers the last one used (first visit opens AI-2).
 
-| Version | Audience | Teaches | Bank |
-|---------|----------|---------|------|
-| **v1 · Data handling** | Everyone | A three-color system for deciding what data may be shared with AI tools | `questions.js` |
-| **v2 · Prompt and verify** | Everyone | How to write a prompt that gets a usable answer, and what to check before relying on it | `questions-v2.js` |
-| **v3 · Agents (managers)** | Managers, department heads, executives | What AI agents may do on their own, and the permissions, vendor terms, testing, and incident response around them | `questions-v3.js` |
+The learner fills in a **training pass** (name, work email, company) before the first
+item, works the module with feedback after every answer, and every finished attempt
+produces a **record**: sent to Biztech (see [Sending records](#sending-records)) and, on
+a pass, a printable certificate.
+
+| Module | Code | Audience | Teaches | Bank |
+|--------|------|----------|---------|------|
+| **Data handling** | AI-1 (`v1`) | Everyone | A three-color system for deciding what data may be shared with AI tools | `questions.js` |
+| **Prompt and verify** | AI-2 (`v2`) | Everyone | How to write a prompt that gets a usable answer, and what to check before relying on it | `questions-v2.js` |
+| **Agents (managers)** | AI-3 (`v3`) | Managers, department heads, executives | What AI agents may do on their own, and the permissions, vendor terms, testing, and incident response around them | `questions-v3.js` |
 
 Together the three cover what goes into AI (v1), what comes out (v2), and what it does
 on its own (v3).
@@ -41,12 +46,16 @@ xdg-open index.html
 
 | File | Purpose |
 |------|---------|
-| `index.html` | Page shell: header with version picker, start screen, quiz screen, results screen. Version-specific markup carries `data-version="v1"` or `"v2"` |
-| `styles.css` | All styling. Colors and spacing are CSS variables in `:root` |
+| `index.html` | Page shell: header with module picker, the training pass, start screen, quiz screen, results screen, and the print-only certificate. Version-specific markup carries `data-version="v1"`, `"v2"` or `"v3"` |
+| `styles.css` | All styling. Colors, type and radii are CSS variables in `:root`; see [Design system](#design-system) |
+| `config.js` | Deployment settings: where records are sent. Edit this, not `app.js` |
+| `fonts/` | Barlow and Barlow Semi Condensed for the app, plus Cinzel, EB Garamond and Pinyon Script for the certificate. All SIL Open Font License (`fonts/OFL*.txt`), bundled so the page and the certificate work offline |
+| `img/` | Trimmed copies of the Biztech logos used by the page. The originals are `biztech.png` and `biztech-white.png` |
+| `PRODUCT.md` | Who the training is for, what it must do, and brand commitments |
 | `questions.js` | **The v1 question bank** — edit this to change v1 content |
 | `questions-v2.js` | **The v2 question bank** — edit this to change v2 content |
 | `questions-v3.js` | **The v3 question bank** and the autonomy ladder (`STAGES`) — edit this to change v3 content |
-| `app.js` | Quiz logic: versions, rendering, scoring, feedback, review. Per-version header copy and results breakdown live in `VERSIONS` at the top |
+| `app.js` | Quiz logic: the pass, versions, rendering, scoring, feedback, review, the item board, sending the record, the certificate. Per-module code, name and results breakdown live in `VERSIONS` at the top |
 
 ## Design decisions (v1)
 
@@ -67,9 +76,10 @@ xdg-open index.html
   answered option is marked in words, and the classification survives Windows
   high-contrast mode on borders.
 - **Generic corporate setting** — HR, finance, operations, security, marketing.
-- **Escalation stays generic** ("your manager or IT/Security"), since the policies leave
-  the contact blank. The employee policy also names an AI Stewardship Council if you
-  decide to use it.
+- **Escalation goes to Biztech support** (support@trustbiztech.com, (707) 442-8393) in
+  the interface: the question footer, the start screen's source line, the certificate.
+  Some `action` lines inside the question banks still say "ask your manager or
+  IT/Security"; those are question content and were left as written.
 - Color is never the only signal. Every color is paired with its text label, so the
   quiz works for colorblind users.
 
@@ -96,7 +106,7 @@ Everything lives in `questions.js`. Two shapes:
   type: "choice",
   tag: "Destination",
   prompt: "...",
-  options: [{ id: "a", text: "..." }, ...],   // keep to 4; keyboard uses 1-4
+  options: [{ id: "a", text: "..." }, ...],   // keep to 4; keyboard uses A-D or 1-4
   answer: "c",
   why: "...",
   action: "...",
@@ -106,7 +116,8 @@ Everything lives in `questions.js`. Two shapes:
 
 Other knobs:
 
-- Pass mark: `PASS_MARK` at the top of `app.js` (currently 16 of 20).
+- Pass mark: `PASS_RATE` at the top of `app.js` (0.8, so 16 of 20). It is a share of
+  the bank, so adding or removing questions keeps the pass mark in proportion.
 - Color names and descriptions: the `COLORS` object at the top of `questions.js`.
   These drive the start-screen legend, the answer buttons, and the in-quiz reminder.
 
@@ -280,7 +291,9 @@ testing, audits, and the remaining vendor contract terms.
 - **The start screen shows the ladder, the "never without a person" list, and how each
   question type works.** The ladder is built from `STAGES`, so the start screen, the
   answer buttons, and the in-quiz reminder always match.
-- **Keyboard:** 1–4 pick a stage or an option; on spot-the-problem, 1–6 toggle lines.
+- **Keyboard:** with focus on the answers, 1–4 pick a stage and A–D (or 1–4) pick an
+  option; on spot-the-problem, 1–6 toggle lines. The keys do nothing while focus is
+  elsewhere, so a stray keystroke never answers. Once answered, Enter moves on.
 
 ### Editing v3 questions
 
@@ -348,28 +361,62 @@ testing, audits, and the remaining vendor contract terms.
 
 ## Design system
 
-Colour lives in three layers in `styles.css`: primitives (`--red-500`), semantic roles
-(`--red-ink`, `--red-tint`, `--red-line`), and components that only ever reference a
-role. Switching theme remaps the semantic layer; no component holds a literal.
+The learner holds a **training pass** and works a **board of items**: a boarding-pass
+and departure-board grammar, carrying the colors of workplace safety signs at a
+restrained scale. `DESIGN.md` records the system in full; the rules worth keeping if you
+extend this:
 
-Two rules are load-bearing and worth keeping if you extend this:
+- **Signal colors are signals, not surfaces.** Safety red, yellow and green (and
+  Biztech navy) appear only as small solid tags and 4px rules, never as filled panels.
+- **Boards are ruled rows, never cards.** A strong rule under the head row, hairlines
+  between rows.
+- **State by inversion.** Your answer, and a flagged spot-the-problem line, turn solid
+  ink. Status is always also said in words (Correct, Your answer, Caught, Missed).
+- **States print themselves.** The verdict, the send status and errors are written into
+  the page; nothing pops up.
+- **Two faces.** Barlow for reading; Barlow Semi Condensed caps for labels, tags and
+  board rows. Body text is `100%`, so it follows the reader's browser text size.
+- **Tokens in layers.** Primitives, then semantic roles, then components; dark mode
+  remaps the semantic layer only. Dimming uses a color token, never `opacity`.
 
-- **Dimming uses a colour token, never `opacity`.** Compositing text at 55% opacity
-  put it at 2.25:1 against white. `--ink-muted` is a real value that clears 4.5:1.
-- **`--control-line` is for interactive boundaries, `--line` for separators.** An
-  option button on a white card is identified by its border alone, so that border
-  needs 3:1 (WCAG 1.4.11). A decorative rule does not.
+The one piece of motion: when you answer, that item's status on the board flips in
+place like a split-flap display, and the next row lights up as Now. With reduced motion
+the status simply changes.
 
-The focus ring is two-tone (`box-shadow: 0 0 0 2px surface, 0 0 0 5px focus`). The
-inner band separates the indicator from whatever it lands on, so it holds 3:1 over
-white cards, colour tints and the primary button alike.
+## Sending records
+
+Every finished attempt, pass or fail, is sent as a JSON `POST` to
+`QUIZ_CONFIG.submitUrl` in `config.js`. A "Retry missed" run sends the same record again
+with the next `attempt` number.
+
+```json
+{
+  "recordId": "AI1-7AX78S", "attempt": 1,
+  "module": "AI-1", "moduleName": "Data handling",
+  "name": "…", "email": "…", "company": "…",
+  "score": 18, "total": 20, "passMark": 16, "passed": true,
+  "issuedAt": "2026-09-22T17:51:00.000Z", "completedAt": "2026-09-22T18:03:00.000Z"
+}
+```
+
+- `submitUrl` is empty until a collection point exists. The training still runs, and
+  the stub on the pass tells the learner their record was not sent.
+- The page can be opened from disk (origin `null`), so the endpoint has to allow CORS
+  for a JSON `POST`.
+- A failed send says so on the stub and offers **Try sending again**.
+- Identity is on the honor system: the learner types their own name, email and company,
+  and the certificate says "Details as entered by the learner". Proving identity needs a
+  company sign-in later.
+- The learner's details are kept for the session only, never stored in the browser, so
+  the next person on a shared computer does not find someone else's name on their pass.
 
 ## Not built yet
 
-This is a prototype. There is no persistence, no user accounts, no LMS/SCORM
-export, and no record of who completed it — results live in memory and reset on
-reload. The only thing stored is the chosen version, in the browser's local storage.
-Because of that, two people opening the same link can land on different versions.
+- **A collection point.** Records are sent only once `submitUrl` is set.
+- **Module assignment.** Learners pick a module from the dropdown; per-module links or a
+  course sequence are deferred past the prototype.
+- **Sign-in.** Identity is self-entered (see above).
+- **LMS/SCORM export.**
 
 ## Before real use (v1)
 

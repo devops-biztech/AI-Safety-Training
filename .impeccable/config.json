@@ -1,0 +1,59 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-22T18:10:26.293Z",
+        "reason": "Intentional design: the direction contract's OWN-WORLD names 4px rules as the only non-tag carrier of the safety-sign colours, and the user approved the mockups showing them (.impeccable/mocks/fusion-start.png, fusion-question.png, approved 2026-09-22). They are full-width dividers above the verdict, notes, the never-list and the load error, not accent borders on a card edge."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-22T18:10:26.299Z",
+        "reason": "False positive: the flagged .fig-item is the first cell of the pass figures, where .pass-issued .pass-figures > div:first-child sets border-left: 0 and padding-left: 0, so there is no boundary for its text to sit against."
+      },
+      {
+        "rule": "tight-leading",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-09-22T18:10:26.304Z",
+        "reason": "False positive: measured in-page, the flagged elements are single-line display type at line-height 1.15 (module and result headings, pass figures), not multi-line body text, which runs 1.45-1.55."
+      },
+      {
+        "rule": "design-system-font",
+        "value": "cinzel",
+        "createdAt": "2026-09-22T20:32:11.074Z",
+        "reason": "Intentional, documented: DESIGN.md's Certificate Exception scopes these to .certificate, the print-only award document, which never renders on screen. The faces are bundled under SIL OFL in fonts/."
+      },
+      {
+        "rule": "design-system-font",
+        "value": "eb garamond",
+        "createdAt": "2026-09-22T20:32:11.080Z",
+        "reason": "Intentional, documented: DESIGN.md's Certificate Exception scopes these to .certificate, the print-only award document, which never renders on screen. The faces are bundled under SIL OFL in fonts/."
+      },
+      {
+        "rule": "design-system-font",
+        "value": "pinyon script",
+        "createdAt": "2026-09-22T20:32:11.086Z",
+        "reason": "Intentional, documented: DESIGN.md's Certificate Exception scopes these to .certificate, the print-only award document, which never renders on screen. The faces are bundled under SIL OFL in fonts/."
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#1a4321",
+        "createdAt": "2026-09-22T20:32:11.091Z",
+        "reason": "Intentional, documented: the Biztech logo green, used only inside the print-only certificate (inner frame, seal ribbon, OF COMPLETION). DESIGN.md records the certificate as the one place that hardcodes literal inks, because a printed record must not follow the screen theme."
+      }
+    ]
+  }
+}

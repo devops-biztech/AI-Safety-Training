@@ -1,1 +1,7 @@
 *.pdf
+# Impeccable working artifacts: review screenshots, direction mockups,
+# decision-page state. The design system itself (.impeccable/design.json)
+# and the surface brief are tracked.
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/questions/

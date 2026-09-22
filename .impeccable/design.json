@@ -1,0 +1,572 @@
+{
+ "schemaVersion": 2,
+ "generatedAt": "2026-09-22T20:31:13Z",
+ "title": "Design System: Biztech AI Security Training",
+ "extensions": {
+  "colorMeta": {
+   "navy-500": {
+    "role": "primary",
+    "displayName": "Biztech Navy",
+    "canonical": "#164679",
+    "tonalRamp": [
+     "#071a2f",
+     "#0b2846",
+     "#0f3560",
+     "#124079",
+     "#164679",
+     "#3a6a9c",
+     "#7ba0c8",
+     "#c6d8ea"
+    ]
+   },
+   "navy-700": {
+    "role": "primary",
+    "displayName": "Navy Deep",
+    "canonical": "#0f3560",
+    "tonalRamp": [
+     "#05121f",
+     "#08203a",
+     "#0b2a4d",
+     "#0f3560",
+     "#154276",
+     "#3c6899",
+     "#7b9fc4",
+     "#c6d7e8"
+    ]
+   },
+   "navy-200": {
+    "role": "primary",
+    "displayName": "Navy Light",
+    "canonical": "#8fb8e4",
+    "tonalRamp": [
+     "#122741",
+     "#1b3a5f",
+     "#26517f",
+     "#3b6ba0",
+     "#5b8cc0",
+     "#8fb8e4",
+     "#bcd5ef",
+     "#e3edf8"
+    ]
+   },
+   "sign-red": {
+    "role": "secondary",
+    "displayName": "Signal Red",
+    "canonical": "#c8102e",
+    "tonalRamp": [
+     "#2d0409",
+     "#4d070f",
+     "#700a17",
+     "#940d20",
+     "#b0102a",
+     "#c8102e",
+     "#e35a6c",
+     "#f6c3ca"
+    ]
+   },
+   "sign-yellow": {
+    "role": "secondary",
+    "displayName": "Signal Yellow",
+    "canonical": "#f2b705",
+    "tonalRamp": [
+     "#302301",
+     "#513c02",
+     "#755703",
+     "#9a7204",
+     "#c09004",
+     "#f2b705",
+     "#f8d260",
+     "#fdf0c5"
+    ]
+   },
+   "sign-green": {
+    "role": "secondary",
+    "displayName": "Signal Green",
+    "canonical": "#00843d",
+    "tonalRamp": [
+     "#00200f",
+     "#003a1b",
+     "#005427",
+     "#0b6a33",
+     "#00843d",
+     "#22a45c",
+     "#6bc78f",
+     "#c3e8d3"
+    ]
+   },
+   "red-700": {
+    "role": "secondary",
+    "displayName": "Red Ink",
+    "canonical": "#b0102a",
+    "tonalRamp": [
+     "#280409",
+     "#460710",
+     "#670a18",
+     "#8b0d21",
+     "#b0102a",
+     "#d43a52",
+     "#e88b99",
+     "#f7ced5"
+    ]
+   },
+   "green-700": {
+    "role": "secondary",
+    "displayName": "Green Ink",
+    "canonical": "#0b6a33",
+    "tonalRamp": [
+     "#021a0c",
+     "#043017",
+     "#064721",
+     "#0b6a33",
+     "#128546",
+     "#34a566",
+     "#74d39c",
+     "#c8ecd8"
+    ]
+   },
+   "stone-100": {
+    "role": "neutral",
+    "displayName": "Stone Ground",
+    "canonical": "#ededeb",
+    "tonalRamp": [
+     "#141414",
+     "#2a2a28",
+     "#44443f",
+     "#686863",
+     "#93938d",
+     "#b4b4ae",
+     "#d3d3cf",
+     "#ededeb"
+    ]
+   },
+   "stone-050": {
+    "role": "neutral",
+    "displayName": "Stone Panel",
+    "canonical": "#f8f8f6",
+    "tonalRamp": [
+     "#171716",
+     "#2e2e2c",
+     "#484844",
+     "#6c6c67",
+     "#979791",
+     "#b8b8b2",
+     "#d7d7d3",
+     "#f8f8f6"
+    ]
+   },
+   "stone-300": {
+    "role": "neutral",
+    "displayName": "Rule",
+    "canonical": "#d3d3cf",
+    "tonalRamp": [
+     "#141414",
+     "#282826",
+     "#42423e",
+     "#646460",
+     "#8d8d87",
+     "#adada7",
+     "#d3d3cf",
+     "#ececea"
+    ]
+   },
+   "stone-400": {
+    "role": "neutral",
+    "displayName": "Perforation",
+    "canonical": "#b4b4ae",
+    "tonalRamp": [
+     "#131312",
+     "#262624",
+     "#3e3e3a",
+     "#5d5d58",
+     "#84847e",
+     "#b4b4ae",
+     "#d5d5d0",
+     "#eeeeec"
+    ]
+   },
+   "stone-500": {
+    "role": "neutral",
+    "displayName": "Control Line",
+    "canonical": "#7c7c76",
+    "tonalRamp": [
+     "#121211",
+     "#232321",
+     "#393936",
+     "#54544f",
+     "#7c7c76",
+     "#a5a59f",
+     "#c9c9c4",
+     "#eaeae8"
+    ]
+   },
+   "stone-600": {
+    "role": "neutral",
+    "displayName": "Ink Muted",
+    "canonical": "#686863",
+    "tonalRamp": [
+     "#111110",
+     "#1f1f1e",
+     "#333331",
+     "#4b4b47",
+     "#686863",
+     "#93938d",
+     "#bfbfb9",
+     "#e6e6e3"
+    ]
+   },
+   "stone-700": {
+    "role": "neutral",
+    "displayName": "Ink Soft",
+    "canonical": "#54544f",
+    "tonalRamp": [
+     "#0f0f0e",
+     "#1c1c1b",
+     "#2d2d2b",
+     "#41413e",
+     "#54544f",
+     "#80807a",
+     "#b0b0aa",
+     "#e0e0dd"
+    ]
+   },
+   "stone-950": {
+    "role": "neutral",
+    "displayName": "Ink",
+    "canonical": "#141414",
+    "tonalRamp": [
+     "#0a0a0a",
+     "#141414",
+     "#282826",
+     "#42423f",
+     "#61615c",
+     "#898983",
+     "#b7b7b1",
+     "#e8e8e5"
+    ]
+   },
+   "field-white": {
+    "role": "neutral",
+    "displayName": "Field White",
+    "canonical": "#ffffff",
+    "tonalRamp": [
+     "#141414",
+     "#2c2c2a",
+     "#484844",
+     "#6a6a65",
+     "#949490",
+     "#bfbfbb",
+     "#e2e2df",
+     "#ffffff"
+    ]
+   }
+  },
+  "typographyMeta": {
+   "display": {
+    "displayName": "Pass Name",
+    "purpose": "The learner's name on the training pass. Condensed caps, the pass's own voice."
+   },
+   "headline": {
+    "displayName": "Module / Result Heading",
+    "purpose": "Module title and result title. Single-line display type; the 1.15 leading is intentional, not cramped."
+   },
+   "title": {
+    "displayName": "Question Prompt",
+    "purpose": "The question. Switches to condensed caps at 1.25rem when a scenario precedes it."
+   },
+   "figure": {
+    "displayName": "Pass Figure",
+    "purpose": "Item / to pass / correct cells, and the pass or fail result. Tabular caps."
+   },
+   "body-lead": {
+    "displayName": "Lede",
+    "purpose": "Ledes, scenario text, answer text and verdict explanations, capped at 66-68ch."
+   },
+   "body": {
+    "displayName": "Body",
+    "purpose": "Board rows and general copy. Set at 100% so it follows the reader's browser text size."
+   },
+   "label": {
+    "displayName": "Label",
+    "purpose": "Field labels, column heads, masthead title. Condensed caps at 0.12em."
+   },
+   "row": {
+    "displayName": "Board Row",
+    "purpose": "Gate board rows, buttons and the module select. Condensed caps at 0.05-0.1em."
+   },
+   "cert-title": {
+    "displayName": "Certificate Title",
+    "purpose": "CERTIFICATE and OF COMPLETION on the printed award, set in Cinzel tracked caps. Print only."
+   },
+   "cert-name": {
+    "displayName": "Certificate Name",
+    "purpose": "The learner's name on the printed award, set in Pinyon Script at 46pt over a hairline rule. Print only."
+   },
+   "cert-prose": {
+    "displayName": "Certificate Prose",
+    "purpose": "The award sentence and its ruled-line values, set in EB Garamond. Print only."
+   }
+  },
+  "shadows": [
+   {
+    "name": "panel",
+    "value": "0 1px 2px rgba(20, 20, 20, .06), 0 8px 22px rgba(20, 20, 20, .06)",
+    "purpose": "The system's only shadow. Raised containers (panel, training pass) sit on the ground like paper on a table. Deepens to 0 1px 2px rgba(0,0,0,.5), 0 8px 22px rgba(0,0,0,.3) in dark mode; removed in print."
+   }
+  ],
+  "motion": [
+   {
+    "name": "ease-out",
+    "value": "cubic-bezier(.2, .7, .2, 1)",
+    "purpose": "The system's single easing curve, on every transition and the flip."
+   },
+   {
+    "name": "flip",
+    "value": "flip .36s cubic-bezier(.2,.7,.2,1) both; @keyframes flip { 0% { transform: perspective(240px) rotateX(-90deg); } 60% { transform: perspective(240px) rotateX(12deg); } 100% { transform: perspective(240px) rotateX(0); } }",
+    "purpose": "The one motion moment: an item's status flips in place on the gate board like a split-flap. Disabled under prefers-reduced-motion."
+   },
+   {
+    "name": "state",
+    "value": "120ms",
+    "purpose": "Answer row background and colour change."
+   },
+   {
+    "name": "control",
+    "value": "140ms",
+    "purpose": "Button background, input border colour, disclosure chevron rotation (150ms)."
+   },
+   {
+    "name": "progress",
+    "value": "350ms",
+    "purpose": "The pass's progress fill, animated with transform: scaleX() so it composites instead of relaying out."
+   }
+  ],
+  "breakpoints": [
+   {
+    "name": "wide",
+    "value": "1080px"
+   },
+   {
+    "name": "stack",
+    "value": "900px"
+   },
+   {
+    "name": "phone",
+    "value": "640px"
+   },
+   {
+    "name": "sticky-pass",
+    "value": "(min-width: 901px) and (min-height: 700px)"
+   }
+  ],
+  "fonts": {
+   "screen": [
+    {
+     "family": "Barlow",
+     "weights": "400/500/600/700",
+     "file": "fonts/barlow-*.woff2",
+     "license": "SIL OFL",
+     "role": "reading"
+    },
+    {
+     "family": "Barlow Semi Condensed",
+     "weights": "500/600/700",
+     "file": "fonts/barlow-semi-condensed-*.woff2",
+     "license": "SIL OFL",
+     "role": "labels, tags, board rows, figures"
+    }
+   ],
+   "certificate": [
+    {
+     "family": "Cinzel",
+     "weights": "400-700 variable",
+     "file": "fonts/cinzel.woff2",
+     "license": "SIL OFL",
+     "role": "certificate title and seal"
+    },
+    {
+     "family": "EB Garamond",
+     "weights": "400-600 variable",
+     "file": "fonts/eb-garamond.woff2",
+     "license": "SIL OFL",
+     "role": "certificate prose and ruled-line values"
+    },
+    {
+     "family": "Pinyon Script",
+     "weights": "400",
+     "file": "fonts/pinyon-script-400.woff2",
+     "license": "SIL OFL",
+     "role": "certificate name"
+    }
+   ],
+   "note": "The three certificate faces are scoped to .certificate, which is print-only; they never render on screen."
+  }
+ },
+ "components": [
+  {
+   "name": "Primary Button",
+   "kind": "button",
+   "refersTo": "button-primary",
+   "description": "The committing action: issue the pass, next item, print certificate.",
+   "html": "<button class=\"ds-btn ds-btn-primary\">Issue pass &amp; start</button>",
+   "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 46px; padding: 12px 22px; font-family: \"Barlow Semi Condensed\", \"Barlow\", system-ui, sans-serif; font-weight: 700; font-size: .9375rem; letter-spacing: .1em; text-transform: uppercase; border: 1.5px solid transparent; border-radius: 4px; cursor: pointer; transition: background-color .14s cubic-bezier(.2,.7,.2,1), border-color .14s cubic-bezier(.2,.7,.2,1); } .ds-btn-primary { background: #164679; color: #fff; } .ds-btn-primary:hover { background: #0f3560; } .ds-btn-primary:focus-visible { outline: 3px solid #164679; outline-offset: 2px; }"
+  },
+  {
+   "name": "Quiet Button",
+   "kind": "button",
+   "refersTo": "button-quiet",
+   "description": "The non-committal action beside a primary one: start over, retry missed items.",
+   "html": "<button class=\"ds-btn ds-btn-quiet\">Start over</button>",
+   "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 46px; padding: 12px 22px; font-family: \"Barlow Semi Condensed\", \"Barlow\", system-ui, sans-serif; font-weight: 700; font-size: .9375rem; letter-spacing: .1em; text-transform: uppercase; border: 1.5px solid transparent; border-radius: 4px; cursor: pointer; transition: background-color .14s cubic-bezier(.2,.7,.2,1); } .ds-btn-quiet { background: transparent; color: #141414; border-color: #141414; } .ds-btn-quiet:hover { background: rgba(20,20,20,.045); } .ds-btn-quiet:focus-visible { outline: 3px solid #164679; outline-offset: 2px; }"
+  },
+  {
+   "name": "Signal Tags",
+   "kind": "chip",
+   "refersTo": "tag-red",
+   "description": "The only small solid carriers of the safety-sign colours. Always sit beside the word they classify; never scaled up into a panel.",
+   "html": "<span class=\"ds-tag ds-tag-red\">Red</span> <span class=\"ds-tag ds-tag-yellow\">Yellow</span> <span class=\"ds-tag ds-tag-green\">Green</span> <span class=\"ds-tag ds-tag-navy\">AI-1</span> <span class=\"ds-tag ds-tag-line\">Check the source</span>",
+   "css": ".ds-tag { display: inline-block; font-family: \"Barlow Semi Condensed\", \"Barlow\", system-ui, sans-serif; font-weight: 700; font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; line-height: 1.3; padding: 3px 8px; border: 1px solid transparent; border-radius: 2px; white-space: nowrap; } .ds-tag-navy { background: #164679; color: #fff; } .ds-tag-red { background: #c8102e; color: #fff; } .ds-tag-yellow { background: #f2b705; color: #141414; } .ds-tag-green { background: #00843d; color: #fff; } .ds-tag-line { color: #141414; border-color: currentColor; padding: 3px 9px; font-weight: 600; font-size: .8125rem; letter-spacing: .08em; }"
+  },
+  {
+   "name": "Field",
+   "kind": "input",
+   "refersTo": "field-input",
+   "description": "A cell on the pass: condensed caps label, white field, hairline rule beneath. Error state adds a red message, never colour alone.",
+   "html": "<div class=\"ds-field\"><span class=\"ds-k\">Work email</span><input class=\"ds-input\" type=\"email\" placeholder=\"name@company.com\"></div>",
+   "css": ".ds-field { padding: 12px 0; border-bottom: 1px solid #d3d3cf; background: #f8f8f6; } .ds-k { display: block; font-family: \"Barlow Semi Condensed\", \"Barlow\", system-ui, sans-serif; font-weight: 500; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: #54544f; } .ds-input { display: block; width: 100%; min-height: 44px; margin-top: 6px; padding: 8px 12px; font-family: \"Barlow\", system-ui, sans-serif; font-size: 1rem; color: #141414; background: #fff; border: 1.5px solid #7c7c76; border-radius: 4px; transition: border-color .14s cubic-bezier(.2,.7,.2,1); } .ds-input::placeholder { color: #686863; } .ds-input:focus-visible { outline: 3px solid #164679; outline-offset: 1px; border-color: #164679; } .ds-input[aria-invalid=\"true\"] { border-color: #b0102a; }"
+  },
+  {
+   "name": "Masthead Select",
+   "kind": "nav",
+   "refersTo": "module-select",
+   "description": "The module picker in the masthead: appearance-reset control with a CSS-drawn chevron, 44px tall.",
+   "html": "<div class=\"ds-nav\"><span class=\"ds-nav-title\">AI security training</span><span class=\"ds-select-wrap\"><select class=\"ds-select\"><option>AI-1 &middot; Data handling</option><option>AI-2 &middot; Prompt and verify</option></select></span></div>",
+   "css": ".ds-nav { display: flex; align-items: center; gap: 20px; padding: 12px 0; border-bottom: 1px solid #d3d3cf; } .ds-nav-title { font-family: \"Barlow Semi Condensed\", \"Barlow\", system-ui, sans-serif; font-weight: 500; font-size: .875rem; letter-spacing: .12em; text-transform: uppercase; color: #54544f; } .ds-select-wrap { position: relative; display: inline-flex; margin-left: auto; } .ds-select-wrap::after { content: \"\"; position: absolute; right: 14px; top: 50%; width: 7px; height: 7px; border-right: 2px solid #141414; border-bottom: 2px solid #141414; transform: translateY(-70%) rotate(45deg); pointer-events: none; } .ds-select { appearance: none; -webkit-appearance: none; min-height: 44px; padding: 8px 40px 8px 12px; font-family: \"Barlow Semi Condensed\", \"Barlow\", system-ui, sans-serif; font-weight: 600; font-size: .875rem; letter-spacing: .06em; text-transform: uppercase; color: #141414; background: #f8f8f6; border: 1.5px solid #141414; border-radius: 4px; cursor: pointer; } .ds-select:focus-visible { outline: 3px solid #164679; outline-offset: 2px; }"
+  },
+  {
+   "name": "Panel",
+   "kind": "card",
+   "refersTo": "panel",
+   "description": "The only raised surface besides the pass: 10px corners, 1px hairline, the system's single shadow.",
+   "html": "<section class=\"ds-panel\"><h2 class=\"ds-panel-title\"><span class=\"ds-tag ds-tag-navy\">AI-1</span> Data handling</h2><p class=\"ds-lede\">Before company information goes into an AI tool, give it a color.</p></section>",
+   "css": ".ds-panel { background: #f8f8f6; border: 1px solid #d3d3cf; border-radius: 10px; box-shadow: 0 1px 2px rgba(20,20,20,.06), 0 8px 22px rgba(20,20,20,.06); padding: 24px 28px 26px; color: #141414; } .ds-panel-title { margin: 0 0 8px; font-family: \"Barlow\", system-ui, sans-serif; font-size: 2.125rem; font-weight: 700; line-height: 1.15; letter-spacing: -.005em; } .ds-panel-title .ds-tag { margin-right: 8px; font-size: .8125rem; vertical-align: .4em; } .ds-lede { margin: 0; font-family: \"Barlow\", system-ui, sans-serif; font-size: 1.0625rem; line-height: 1.55; max-width: 66ch; }"
+  },
+  {
+   "name": "Training Pass",
+   "kind": "custom",
+   "refersTo": "pass-band",
+   "description": "The signature object: navy band, ruled segments, figures in cells, a progress rule, and a dashed perforation above the stub.",
+   "html": "<div class=\"ds-pass\"><div class=\"ds-pass-band\">Biztech &middot; Training pass</div><div class=\"ds-pass-body\"><div class=\"ds-seg\"><span class=\"ds-k\">Learner</span><span class=\"ds-pass-name\">Alex Rivera</span><span class=\"ds-pass-email\">alex.rivera@example.com</span></div><dl class=\"ds-figs\"><div><dt class=\"ds-k\">Item</dt><dd class=\"ds-v\">01/20</dd></div><div><dt class=\"ds-k\">To pass</dt><dd class=\"ds-v\">16</dd></div><div><dt class=\"ds-k\">Correct</dt><dd class=\"ds-v\">0</dd></div></dl><div class=\"ds-track\"><div class=\"ds-fill\"></div></div></div><div class=\"ds-stub\"><span class=\"ds-k\">Stub &middot; Biztech copy</span><p class=\"ds-stub-text\">Sent to Biztech when you finish, pass or not.</p></div></div>",
+   "css": ".ds-pass { width: 360px; max-width: 100%; background: #f8f8f6; color: #141414; border: 1px solid #d3d3cf; border-radius: 10px; box-shadow: 0 1px 2px rgba(20,20,20,.06), 0 8px 22px rgba(20,20,20,.06); overflow: hidden; font-family: \"Barlow\", system-ui, sans-serif; font-variant-numeric: tabular-nums; } .ds-pass-band { padding: 12px 22px; background: #164679; color: #fff; font-family: \"Barlow Semi Condensed\", \"Barlow\", system-ui, sans-serif; font-weight: 600; font-size: .8125rem; letter-spacing: .14em; text-transform: uppercase; } .ds-pass-body { padding: 4px 22px 18px; } .ds-k { display: block; font-family: \"Barlow Semi Condensed\", \"Barlow\", system-ui, sans-serif; font-weight: 500; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: #54544f; } .ds-seg { padding: 12px 0; border-bottom: 1px solid #d3d3cf; } .ds-pass-name { display: block; font-family: \"Barlow Semi Condensed\", \"Barlow\", system-ui, sans-serif; font-weight: 700; font-size: 2rem; letter-spacing: .02em; line-height: 1.05; text-transform: uppercase; } .ds-pass-email { display: block; margin-top: 2px; font-size: .9375rem; color: #54544f; } .ds-figs { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; } .ds-figs > div { padding: 12px 10px 0; border-left: 1px solid #d3d3cf; } .ds-figs > div:first-child { padding-left: 0; border-left: 0; } .ds-figs dt, .ds-figs dd { margin: 0; } .ds-v { font-family: \"Barlow Semi Condensed\", \"Barlow\", system-ui, sans-serif; font-weight: 700; font-size: 1.3125rem; letter-spacing: .04em; text-transform: uppercase; line-height: 1.15; } .ds-track { height: 4px; margin-top: 14px; background: #d3d3cf; overflow: hidden; } .ds-fill { height: 100%; width: 100%; background: #164679; transform: scaleX(.35); transform-origin: left center; transition: transform .35s cubic-bezier(.2,.7,.2,1); } .ds-stub { padding: 12px 22px 16px; border-top: 2px dashed #b4b4ae; } .ds-stub-text { margin: 4px 0 0; font-size: .9375rem; line-height: 1.45; }"
+  },
+  {
+   "name": "Answer Row",
+   "kind": "custom",
+   "refersTo": "option-row",
+   "description": "A board row that answers. State is inversion plus a word: the chosen row turns solid, the right one says Correct answer, the rest go muted.",
+   "html": "<div class=\"ds-opts\"><div class=\"ds-opts-head\"><span>Key</span><span>Class</span><span>Rule</span><span></span></div><button class=\"ds-opt\"><span class=\"ds-opt-key\">1</span><span><span class=\"ds-tag ds-tag-red\">Red</span></span><span class=\"ds-opt-rule\">Do not share</span><span class=\"ds-mark ds-mark-answer\">Correct answer</span></button><button class=\"ds-opt ds-is-mine\"><span class=\"ds-opt-key\">2</span><span><span class=\"ds-tag ds-tag-yellow\">Yellow</span></span><span class=\"ds-opt-rule\">Needs approval</span><span class=\"ds-mark\"><span class=\"ds-tag ds-tag-yellow\">Your answer</span></span></button><button class=\"ds-opt ds-is-muted\"><span class=\"ds-opt-key\">3</span><span><span class=\"ds-tag ds-tag-green\">Green</span></span><span class=\"ds-opt-rule\">Can be shared</span><span class=\"ds-mark\"></span></button></div>",
+   "css": ".ds-opts { display: grid; font-family: \"Barlow\", system-ui, sans-serif; color: #141414; } .ds-opts-head, .ds-opt { display: grid; grid-template-columns: 2.5rem 7rem minmax(0,1fr) auto; align-items: center; column-gap: 14px; } .ds-opts-head { padding: 6px 12px; border-bottom: 1px solid #141414; font-family: \"Barlow Semi Condensed\", \"Barlow\", system-ui, sans-serif; font-weight: 500; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: #54544f; } .ds-opt { width: 100%; min-height: 56px; padding: 11px 12px; font: inherit; text-align: left; color: #141414; background: transparent; border: 0; border-bottom: 1px solid #d3d3cf; cursor: pointer; transition: background-color .12s cubic-bezier(.2,.7,.2,1), color .12s cubic-bezier(.2,.7,.2,1); } .ds-opt:hover { background: rgba(20,20,20,.045); } .ds-opt:focus-visible { outline: 3px solid #164679; outline-offset: -3px; } .ds-opt-key { font-family: \"Barlow Semi Condensed\", \"Barlow\", system-ui, sans-serif; font-weight: 700; font-size: .9375rem; } .ds-opt-rule { font-family: \"Barlow Semi Condensed\", \"Barlow\", system-ui, sans-serif; font-weight: 600; font-size: 1rem; letter-spacing: .06em; text-transform: uppercase; } .ds-mark { justify-self: end; font-family: \"Barlow Semi Condensed\", \"Barlow\", system-ui, sans-serif; font-weight: 700; font-size: .8125rem; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; } .ds-mark-answer { color: #0b6a33; } .ds-opt.ds-is-mine { background: #141414; color: #fff; border-bottom-color: #141414; } .ds-opt.ds-is-mine:hover { background: #141414; } .ds-opt.ds-is-muted { color: #686863; } .ds-tag { display: inline-block; font-family: \"Barlow Semi Condensed\", \"Barlow\", system-ui, sans-serif; font-weight: 700; font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; line-height: 1.3; padding: 3px 8px; border: 1px solid transparent; border-radius: 2px; white-space: nowrap; } .ds-tag-red { background: #c8102e; color: #fff; } .ds-tag-yellow { background: #f2b705; color: #141414; } .ds-tag-green { background: #00843d; color: #fff; }"
+  },
+  {
+   "name": "Verdict",
+   "kind": "custom",
+   "refersTo": "board-head",
+   "description": "The explanation printed under the answers behind a 4px signal rule, ending in a policy source line. Receives focus when it appears.",
+   "html": "<div class=\"ds-fb ds-fb-bad\"><p class=\"ds-fb-head\">Not correct. This is Red.</p><p class=\"ds-fb-why\">HR information is Red: personnel files, compensation, benefits, payroll, applicant data. A reasonable request does not change the color of the data.</p><p class=\"ds-fb-action\"><strong>In practice:</strong> Red information goes into an AI tool only when the company has specifically approved the tool, the use case, and the access.</p><p class=\"ds-fb-source\">Human resources &middot; Employee policy &middot; Red: stop and protect trust</p></div>",
+   "css": ".ds-fb { margin-top: 20px; padding-top: 14px; border-top: 4px solid #141414; font-family: \"Barlow\", system-ui, sans-serif; color: #141414; } .ds-fb-good { border-top-color: #00843d; } .ds-fb-bad { border-top-color: #c8102e; } .ds-fb-head { margin: 0 0 6px; font-size: 1.1875rem; font-weight: 700; } .ds-fb-bad .ds-fb-head { color: #b0102a; } .ds-fb-good .ds-fb-head { color: #0b6a33; } .ds-fb-why { margin: 0; font-size: 1.0625rem; line-height: 1.55; max-width: 68ch; } .ds-fb-action { margin: 12px 0 0; font-size: 1rem; line-height: 1.55; max-width: 68ch; } .ds-fb-source { margin: 14px 0 0; font-family: \"Barlow Semi Condensed\", \"Barlow\", system-ui, sans-serif; font-weight: 500; font-size: .8125rem; letter-spacing: .06em; text-transform: uppercase; color: #54544f; }"
+  },
+  {
+   "name": "Gate Board",
+   "kind": "custom",
+   "refersTo": "gate-row",
+   "description": "The item board. A strong rule on top, hairlines between rows, waiting rows in muted ink, and the one motion moment: a status flips in place like a split-flap.",
+   "html": "<div class=\"ds-gate\"><p class=\"ds-gate-title\">Items</p><ol class=\"ds-gate-board\"><li class=\"ds-gate-row\"><span class=\"ds-gate-num\">01</span><span class=\"ds-gate-topic\">Human resources</span><span class=\"ds-tag ds-tag-green ds-flip\">Correct</span></li><li class=\"ds-gate-row\"><span class=\"ds-gate-num\">02</span><span class=\"ds-gate-topic\">Finance</span><span class=\"ds-tag ds-tag-red\">Missed</span></li><li class=\"ds-gate-row ds-is-now\"><span class=\"ds-gate-num\">03</span><span class=\"ds-gate-topic\">Operations</span><span class=\"ds-gate-wait\">Now</span></li><li class=\"ds-gate-row\"><span class=\"ds-gate-num\">04</span><span class=\"ds-gate-topic\">Approved tools</span><span class=\"ds-gate-wait\">Waiting</span></li></ol></div>",
+   "css": ".ds-gate { color: #141414; } .ds-gate-title { margin: 0 0 6px; font-family: \"Barlow Semi Condensed\", \"Barlow\", system-ui, sans-serif; font-weight: 600; font-size: .8125rem; letter-spacing: .12em; text-transform: uppercase; color: #54544f; } .ds-gate-board { list-style: none; margin: 0; padding: 0; border-top: 1px solid #141414; } .ds-gate-row { display: grid; grid-template-columns: 2rem minmax(0,1fr) auto; align-items: center; gap: 10px; min-height: 38px; padding: 4px; border-bottom: 1px solid #d3d3cf; font-family: \"Barlow Semi Condensed\", \"Barlow\", system-ui, sans-serif; font-weight: 600; font-size: .875rem; letter-spacing: .05em; text-transform: uppercase; color: #686863; } .ds-gate-num { color: #54544f; } .ds-gate-wait { font-weight: 500; font-size: .75rem; letter-spacing: .1em; color: #686863; } .ds-gate-row.ds-is-now .ds-gate-num, .ds-gate-row.ds-is-now .ds-gate-topic { color: #141414; } .ds-tag { display: inline-block; font-family: \"Barlow Semi Condensed\", \"Barlow\", system-ui, sans-serif; font-weight: 700; font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; line-height: 1.3; padding: 3px 8px; border: 1px solid transparent; border-radius: 2px; white-space: nowrap; } .ds-tag-red { background: #c8102e; color: #fff; } .ds-tag-green { background: #00843d; color: #fff; } .ds-flip { animation: ds-flip .36s cubic-bezier(.2,.7,.2,1) both; transform-origin: 50% 50%; } @keyframes ds-flip { 0% { transform: perspective(240px) rotateX(-90deg); } 60% { transform: perspective(240px) rotateX(12deg); } 100% { transform: perspective(240px) rotateX(0); } } @media (prefers-reduced-motion: reduce) { .ds-flip { animation: none; } }"
+  }
+ ],
+ "narrative": {
+  "northStar": "The Training Pass and the Gate Board",
+  "overview": "The learner is issued a pass and then works a board. Everything on screen belongs to one of those two objects: a navy-banded pass down the left with the learner's name set large in condensed caps, figures in ruled cells, a barcode, and a dashed perforation above the stub; and, to the right, boards of ruled rows - the module's reference table, the answer options, the item board, the results breakdown. Nothing is a card, nothing floats, nothing is decorated. The page reads like printed ephemera that happens to be interactive.\n\nThe palette is workplace safety signage held at a deliberately small scale. Red, yellow and green are the subject matter of this training, so they carry real meaning and are spent carefully: they appear as small solid tags and as 4px rules over a block of text, never as a panel fill or a page wash. Navy is the only colour allowed to fill anything larger, and only on the pass band, the certificate band and primary buttons. The result is a near-monochrome ground (#ededeb) with panels one step lighter (#f8f8f6), black ink, and colour arriving only where it is load-bearing.\n\nThree token layers do the work: primitives, semantic roles, components. Dark mode remaps only the semantic layer - it is composed as a board at night (ground #111315, panel #1a1d20), not a mechanical inversion. Dimming is a colour decision, never an opacity one. State is carried by inversion (a chosen row turns solid) always paired with a word, so nothing depends on colour or fill alone. The accessibility floor is part of the visual system, not a retrofit: AA contrast in both themes, a forced-colors block, 44px minimum controls, and a 3px focus ring.",
+  "keyCharacteristics": [
+   "Ruled rows, not cards: hairlines between rows, a strong rule under head rows.",
+   "Two faces only: Barlow reads, Barlow Semi Condensed caps label.",
+   "Signal colours confined to small solid tags and 4px top rules.",
+   "State by inversion plus a word, never colour alone.",
+   "Tabular figures everywhere; body type at 100% of the reader's setting.",
+   "One shadow, one motion moment, no decoration beyond the perforation and barcode."
+  ],
+  "rules": [
+   {
+    "name": "The Signal-Not-Surface Rule",
+    "body": "Red, yellow and green may only appear as a small solid tag or as a 4px rule above a block of text. They never fill a panel, a button, a row, or a page region. Navy is the single exception to filled colour, and only on the pass band, the certificate band, and primary buttons.",
+    "section": "colors"
+   },
+   {
+    "name": "The Word-With-The-Colour Rule",
+    "body": "Every signal colour ships with its word - Red / Do not share, Correct, Your answer, Caught, Missed, Not a problem. If the colour were removed, the meaning must survive intact.",
+    "section": "colors"
+   },
+   {
+    "name": "The Colour-Not-Opacity Rule",
+    "body": "Dimming is done with --ink-muted, never with opacity or an alpha text colour. The only alpha values in the system are the panel shadow and the hover wash.",
+    "section": "colors"
+   },
+   {
+    "name": "The Semantic-Only Remap Rule",
+    "body": "Dark mode rewrites the semantic layer and nothing else. Components never reference a primitive or a raw literal, so a theme change is a one-layer edit. (The print certificate is the single documented exception.)",
+    "section": "colors"
+   },
+   {
+    "name": "The Two-Voice Rule",
+    "body": "Barlow reads; Barlow Semi Condensed labels. Prose, explanations and scenarios are never set in the condensed face; tags, board rows, buttons, figures and field labels are never set in the reading face. No third family enters the system.",
+    "section": "typography"
+   },
+   {
+    "name": "The Reader's-Size Rule",
+    "body": "Body is font-size: 100%. Never pin the base to a pixel value; every other size is expressed in rem against it.",
+    "section": "typography"
+   },
+   {
+    "name": "The Tabular Rule",
+    "body": "font-variant-numeric: tabular-nums is set on body and inherited everywhere. Scores, item counters and record codes must align down a column.",
+    "section": "typography"
+   },
+   {
+    "name": "The Measure Rule",
+    "body": "Every reading column is capped: ledes and notes at 66-70ch, answer text and explanations at 68ch, the reading column of any board at 72ch. A breakdown row and a head row are exempt because they carry no prose.",
+    "section": "layout"
+   },
+   {
+    "name": "The One-Shadow Rule",
+    "body": "A surface either is a panel (one shadow, 10px corners, 1px border) or it is not (no shadow at all). There is no hover shadow, no focus shadow, no elevated variant. Hover is a 4.5% ink wash; focus is a 3px outline.",
+    "section": "elevation"
+   },
+   {
+    "name": "The Rule-Over-Weight Rule",
+    "body": "Hierarchy between rows is expressed in rule strength, not in fills: a strong ink rule under head rows, a stone hairline between rows, a 4px signal rule above a block that carries a verdict or a warning.",
+    "section": "elevation"
+   }
+  ],
+  "dos": [
+   "Do declare new colour in the semantic layer and let components read only semantic tokens; primitives and raw hex stay out of component rules (print certificate excepted).",
+   "Do spend the signal colours only as a small solid tag or a 4px rule above text, and always next to the word that names the state.",
+   "Do dim with --ink-muted. A dimmed row is a colour change, not an opacity change.",
+   "Do build any new tabular surface as ruled rows: strong ink rule under the head row, 1px stone hairlines between rows.",
+   "Do keep two faces - Barlow for anything read as prose, Barlow Semi Condensed caps for anything read as a label, tag, figure or board row.",
+   "Do keep body at font-size: 100% and size everything else in rem against it.",
+   "Do pair every state change with a word, and give every interactive target at least 44px (46px for the standard button).",
+   "Do cap reading columns at 64-72ch and keep tabular figures on.",
+   "Do carry state inversion with --invert-bg / --invert-ink, and add a forced-colors fallback whenever a fill is doing work."
+  ],
+  "donts": [
+   "Don't fill a panel, row, button or page region with red, yellow or green. Navy is the only colour that fills, and only on the pass band, the certificate band and primary buttons.",
+   "Don't use opacity to express a de-emphasised or disabled state.",
+   "Don't turn a board into cards: no per-row background, no per-row border box, no radius on rows.",
+   "Don't add a second shadow, a hover lift, or a focus glow. One panel shadow; hover is a wash, focus is a 3px outline.",
+   "Don't add a second animation. The split-flap status is the system's one motion moment, and it must stay behind prefers-reduced-motion.",
+   "Don't set prose in the condensed face, or a tag, figure or board row in the reading face, and don't introduce a third family.",
+   "Don't pin the base font size in pixels, and don't set a fixed pixel line-height on multi-line copy.",
+   "Don't express a classification, a verdict, or a selection by colour alone, and don't ship a fill-dependent state without a forced-colors rule.",
+   "Don't hardcode a hex outside the print certificate block."
+  ]
+ }
+}
