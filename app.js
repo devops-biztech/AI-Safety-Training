@@ -18,6 +18,10 @@
   var STORE_KEY = "ai-quiz-version";
 
   var CONFIG = typeof QUIZ_CONFIG !== "undefined" && QUIZ_CONFIG ? QUIZ_CONFIG : {};
+  // only an explicit false turns it off, so a missing setting stays strict
+  var REQUIRE_DETAILS = CONFIG.requireDetails !== false;
+  // what a blank field becomes when details are optional (demos)
+  var DEMO_LEARNER = { name: "Demo learner", email: "demo@example.com", company: "Demo company" };
 
   /* ---------- question banks ----------
      Each bank is a separate script. If one is blocked or fails to load, its
@@ -534,13 +538,16 @@
   /* ---------- the training pass ---------- */
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  // every field says what is wrong and how to fix it, next to the field
+  // every field says what is wrong and how to fix it, next to the field.
+  // With details optional, a blank field is fine; an email that is typed
+  // in still has to look like one
   function validate() {
+    var email = el.fEmail.value.trim();
     var checks = [
-      [el.fName, el.fName.value.trim() ? "" : "Enter your full name."],
-      [el.fEmail, !el.fEmail.value.trim() ? "Enter your work email."
-        : EMAIL_RE.test(el.fEmail.value.trim()) ? "" : "Enter a full email address, like name@company.com."],
-      [el.fCompany, el.fCompany.value.trim() ? "" : "Enter the company you work for."],
+      [el.fName, el.fName.value.trim() || !REQUIRE_DETAILS ? "" : "Enter your full name."],
+      [el.fEmail, !email ? (REQUIRE_DETAILS ? "Enter your work email." : "")
+        : EMAIL_RE.test(email) ? "" : "Enter a full email address, like name@company.com."],
+      [el.fCompany, el.fCompany.value.trim() || !REQUIRE_DETAILS ? "" : "Enter the company you work for."],
     ];
     var firstBad = null;
     checks.forEach(function (pair) {
@@ -1335,9 +1342,9 @@
     var bad = validate();
     if (bad) { bad.focus(); return; }
     learner = {
-      name: el.fName.value.trim(),
-      email: el.fEmail.value.trim(),
-      company: el.fCompany.value.trim(),
+      name: el.fName.value.trim() || DEMO_LEARNER.name,
+      email: el.fEmail.value.trim() || DEMO_LEARNER.email,
+      company: el.fCompany.value.trim() || DEMO_LEARNER.company,
     };
     startFull();
   });
@@ -1398,6 +1405,10 @@
       e.preventDefault();
     }
   });
+
+  if (!REQUIRE_DETAILS) {
+    [el.fName, el.fEmail, el.fCompany].forEach(function (input) { input.required = false; });
+  }
 
   buildLegend();
   buildLadder();
