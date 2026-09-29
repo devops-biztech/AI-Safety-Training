@@ -1,8 +1,9 @@
 /* ==================================================================
    Biztech AI security training - quiz logic
    Depends on config.js (QUIZ_CONFIG), questions.js (v1: COLORS,
-   QUESTIONS), questions-v2.js (v2: QUESTIONS_V2) and questions-v3.js
-   (v3: STAGES, QUESTIONS_V3). No libraries.
+   QUESTIONS), questions-v2.js (v2: QUESTIONS_V2), questions-v3.js
+   (v3: STAGES, QUESTIONS_V3) and questions-v4.js (v4: TIERS,
+   QUESTIONS_V4). No libraries.
 
    The learner issues a training pass (name, email, company), works the
    module's items, and every finished attempt produces a record: sent to
@@ -28,6 +29,8 @@
     QUESTIONS_V2: typeof QUESTIONS_V2 !== "undefined" ? QUESTIONS_V2 : null,
     STAGES: typeof STAGES !== "undefined" ? STAGES : null,
     QUESTIONS_V3: typeof QUESTIONS_V3 !== "undefined" ? QUESTIONS_V3 : null,
+    TIERS: typeof TIERS !== "undefined" ? TIERS : null,
+    QUESTIONS_V4: typeof QUESTIONS_V4 !== "undefined" ? QUESTIONS_V4 : null,
   };
 
   /* ---------- versions (shown to learners as modules) ----------
@@ -83,6 +86,21 @@
       subject: "agent governance",
       habit: "start every agent low on the ladder, give it only the access it needs, and make sure you can see and stop what it does.",
     },
+    v4: {
+      code: "AI-4",
+      name: "Other AI tools",
+      questions: BANKS.QUESTIONS_V4,
+      needs: ["QUESTIONS_V4", "TIERS"],
+      minutes: 12,
+      groupOf: function (q) { return q.area; },
+      groups: [
+        { key: "tool", label: "Which tool counts" },
+        { key: "use", label: "What goes where" },
+        { key: "request", label: "Asking and reporting" },
+      ],
+      subject: "choosing an AI tool",
+      habit: "check the account, the approved use, and the data before you use any AI tool. When another tool would do the job better, ask for it to be reviewed.",
+    },
   };
 
   var COLOR_TAG = { RED: "tag-red", YELLOW: "tag-yellow", GREEN: "tag-green" };
@@ -117,6 +135,8 @@
     ladder: $("ladder"),
     miniLegend: $("mini-legend-body"),
     miniLadder: $("mini-ladder-body"),
+    tiers: $("tiers"),
+    miniTiers: $("mini-tiers-body"),
 
     // the pass
     pass: $("pass"),
@@ -478,6 +498,39 @@
     return "Stage " + n + " · " + STAGES[n].name;
   }
 
+  // v4: the three kinds of AI tool on the start screen and in the reminder
+  function buildTiers() {
+    if (!BANKS.TIERS) return;
+    var head = make("div", "board-row board-head");
+    head.setAttribute("role", "row");
+    ["Tool", "What it means"].forEach(function (h) {
+      var cell = make("span", null, h);
+      cell.setAttribute("role", "columnheader");
+      head.appendChild(cell);
+    });
+    el.tiers.appendChild(head);
+
+    var list = make("ul");
+    Object.keys(TIERS).forEach(function (key) {
+      var t = TIERS[key];
+      var row = make("div", "board-row");
+      row.setAttribute("role", "row");
+      var name = make("span", "row-label", t.name);
+      name.setAttribute("role", "cell");
+      row.appendChild(name);
+      var detail = make("span", null, t.detail);
+      detail.setAttribute("role", "cell");
+      row.appendChild(detail);
+      el.tiers.appendChild(row);
+
+      var li = make("li");
+      li.appendChild(make("b", null, t.name + ":"));
+      li.appendChild(document.createTextNode(" " + t.short));
+      list.appendChild(li);
+    });
+    el.miniTiers.appendChild(list);
+  }
+
   /* ---------- the training pass ---------- */
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -731,6 +784,7 @@
     color: ["Key", "Class", "Rule", ""],
     choice: ["Key", "Answer", ""],
     ladder: ["Key", "", "Stage", ""],
+    tier: ["Key", "Kind of tool", ""],
     spot: ["Line", "Select every line that is a problem", "", "Flag"],
   };
 
@@ -780,6 +834,10 @@
     } else if (q.type === "ladder") {
       Object.keys(STAGES).forEach(function (n) {
         el.options.appendChild(ladderOption(q, n));
+      });
+    } else if (q.type === "tier") {
+      Object.keys(TIERS).forEach(function (key, i) {
+        el.options.appendChild(tierOption(q, key, i + 1));
       });
     } else if (q.type === "spot") {
       q.lines.forEach(function (line, i) {
@@ -834,6 +892,24 @@
     btn.appendChild(make("span", "opt-mark"));
 
     btn.addEventListener("click", function () { answer(q, n); });
+    return btn;
+  }
+
+  // laid out like a choice row: the tier's name over its one-line meaning
+  function tierOption(q, key, num) {
+    var btn = make("button", "opt grid-tier");
+    btn.type = "button";
+    btn.dataset.value = key;
+    btn.dataset.key = String(num);
+
+    btn.appendChild(make("span", "opt-key", String(num)));
+    var text = make("span", "opt-text");
+    text.appendChild(make("span", "opt-stage", TIERS[key].name));
+    text.appendChild(make("span", "opt-sub", TIERS[key].short));
+    btn.appendChild(text);
+    btn.appendChild(make("span", "opt-mark"));
+
+    btn.addEventListener("click", function () { answer(q, key); });
     return btn;
   }
 
@@ -980,6 +1056,8 @@
       headText = verdict + "This is " + titleCase(COLORS[q.answer].label) + ".";
     } else if (q.type === "ladder") {
       headText = verdict + "This is Stage " + q.answer + ": " + STAGES[q.answer].name + ".";
+    } else if (q.type === "tier") {
+      headText = verdict + "This counts as " + TIERS[q.answer].name.toLowerCase() + ".";
     } else if (q.type === "spot") {
       headText = spotHead(q, given, correct);
     } else {
@@ -1099,6 +1177,7 @@
     if (value == null) return "Not answered";
     if (q.type === "color") return titleCase(value);
     if (q.type === "ladder") return stageLabel(value);
+    if (q.type === "tier") return TIERS[value].name;
     if (q.type === "spot") return linesLabel(value);
     var match = q.options.filter(function (o) { return o.id === value; })[0];
     return match ? match.text : value;
@@ -1322,6 +1401,7 @@
 
   buildLegend();
   buildLadder();
+  buildTiers();
   markUnavailable();
   var startVersion = storedVersion() || firstAvailable();
   if (startVersion) {

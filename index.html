@@ -25,6 +25,7 @@
           <option value="v1">AI-1 &middot; Data handling</option>
           <option value="v2" selected>AI-2 &middot; Prompt and verify</option>
           <option value="v3">AI-3 &middot; Agents (managers)</option>
+          <option value="v4">AI-4 &middot; Other AI tools</option>
         </select>
       </span>
     </div>
@@ -194,8 +195,57 @@
         </p>
       </div>
 
+      <!-- AI-4: AI tools outside the company's approved suite -->
+      <div data-version="v4" hidden>
+        <p class="lede">
+          Your company has approved AI tools. Other tools may be better at some jobs: one writes better
+          proposals, another handles formulas better. This module is about <strong>which tool you may use,
+          for what</strong>, and how to get another one approved when it would do the job better.
+        </p>
+        <p class="lede">
+          <strong>The setting:</strong> your company runs on Google Workspace, and Gemini, used through your
+          company account, is company-approved. Claude, ChatGPT, and other tools are approved only where a
+          scenario says so.
+        </p>
+        <p class="creed">Business work belongs in company-approved AI accounts and systems, not personal accounts or unapproved plug-ins.</p>
+
+        <h3 class="board-title">Three kinds of AI tool</h3>
+        <div class="board" id="tiers" role="table" aria-label="Three kinds of AI tool"><!-- built by app.js --></div>
+
+        <h3 class="board-title">Three questions before you use one</h3>
+        <ol class="board board-parts">
+          <li class="board-row">
+            <span class="row-num" aria-hidden="true">1</span>
+            <span class="row-label">Which account?</span>
+            <span class="row-body">The company's contracted account. A personal account is a personal tool,
+              whatever the brand and whoever pays for it.</span>
+          </li>
+          <li class="board-row">
+            <span class="row-num" aria-hidden="true">2</span>
+            <span class="row-label">Approved for this use?</span>
+            <span class="row-body">A department-approved tool covers one use and a limited data scope. Being
+              good at something else doesn't stretch the approval.</span>
+          </li>
+          <li class="board-row">
+            <span class="row-num" aria-hidden="true">3</span>
+            <span class="row-label">Does the data fit?</span>
+            <span class="row-body">Red goes in only when the tool, the use case, and the access are all
+              specifically approved. Personal and free tools get no company information at all.</span>
+          </li>
+        </ol>
+
+        <p class="note">
+          A better tool is a good reason to ask, not a reason to go around the rule. Ask your manager to put it
+          forward: a department head and IT/Security review it for what every AI vendor must provide, including a
+          data processing agreement, a no-training clause, SSO and MFA, and audit logs. <strong>Until then, it
+          gets no company information.</strong>
+        </p>
+      </div>
+
       <p class="source-line" data-version="v1" hidden>Based on the company AI policy and the plain-language
       vendor terms guide. When in doubt, treat it as Red and ask Biztech support.</p>
+      <p class="source-line" data-version="v4" hidden>Based on the company AI policy, the leader AI governance policy,
+      and the plain-language vendor terms guide. To ask about a tool, or if you are unsure, contact Biztech support.</p>
       <p class="source-line" data-version="v2">Based on the company AI policy, plus good prompting practice where
       the policy is silent. AI can help narrow the search; a person verifies and decides.</p>
       <p class="source-line" data-version="v3" hidden>Based on the leader AI governance policy. Submit any new AI
@@ -244,6 +294,11 @@
       <details class="reminder" data-version="v3" hidden>
         <summary>Remind me of the ladder</summary>
         <div id="mini-ladder-body"></div>
+      </details>
+      <details class="reminder" data-version="v4" hidden>
+        <summary>Remind me of the tool kinds</summary>
+        <div id="mini-tiers-body"></div>
+        <p class="mini-note">Before you use one: which account, approved for this use, and does the data fit?</p>
       </details>
     </div>
 
@@ -406,6 +461,7 @@
 <script src="questions.js"></script>
 <script src="questions-v2.js"></script>
 <script src="questions-v3.js"></script>
+<script src="questions-v4.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

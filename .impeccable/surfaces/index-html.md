@@ -16,7 +16,7 @@ related_targets: []
 
 ## Scope and mode
 
-Operate. One page, four states: start (issue the training pass), quiz, results (completed pass, review, retry), and the printed certificate. Covers all three modules (AI-1 Data handling, AI-2 Prompt and verify, AI-3 Agents (managers)) and every question type: color, A–D choice, ladder, spot-the-problems, plus v2 prompt/response exchanges.
+Operate. One page, four states: start (issue the training pass), quiz, results (completed pass, review, retry), and the printed certificate. Covers all four modules (AI-1 Data handling, AI-2 Prompt and verify, AI-3 Agents (managers), AI-4 Other AI tools) and every question type: color, A–D choice, tool tier, ladder, spot-the-problems, plus v2 prompt/response exchanges.
 
 ## Audience, task, constraints
 
