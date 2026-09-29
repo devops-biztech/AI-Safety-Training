@@ -15,14 +15,17 @@ work, and are not security or AI specialists.
 
 - **Everyone** takes module v1 (data handling) and v2 (prompt and verify).
 - **Managers, department heads, and executives** also take v3 (agent governance).
+- **Everyone** takes v4 (other AI tools): what makes a tool approved, and how to use or
+  ask for one outside the company's approved suite.
 - **Biztech** (and, through Biztech, the client) is the audience for the completion
   record: it needs to know who completed which module, when, and with what result.
 
 ## Product Purpose
 
-AI security awareness training: three scenario-based modules of 20 questions each,
+AI security awareness training: four scenario-based modules of 20 questions each,
 grounded in the company AI policies. Together they cover what goes into AI (v1), what
-comes out of it (v2), and what it may do on its own (v3).
+comes out of it (v2), what it may do on its own (v3), and which AI tool may be used at
+all (v4).
 
 Success means the learner passes (80%, currently 16 of 20), understands why each answer
 lands where it does, and leaves a completion record Biztech can rely on.
@@ -57,9 +60,10 @@ check, and what AI may do without a person. It does not teach whether to use the
 
 Built:
 
-- Three modules, each with its own question bank: `questions.js` (v1),
-  `questions-v2.js` (v2), `questions-v3.js` (v3 plus the autonomy ladder `STAGES`).
-- Question types: color classification (Red/Yellow/Green), A–D choice, ladder (pick a
+- Four modules, each with its own question bank: `questions.js` (v1),
+  `questions-v2.js` (v2), `questions-v3.js` (v3 plus the autonomy ladder `STAGES`),
+  `questions-v4.js` (v4 plus the tool tiers `TIERS`).
+- Question types: color classification (Red/Yellow/Green), A–D choice, tool tier (pick one of three), ladder (pick a
   stage 1–4), and spot-the-problems (select every problem line; all-or-nothing).
 - Immediate feedback after each answer; a results screen with a per-area breakdown, a
   review of only the missed questions, and "retry missed".
@@ -94,7 +98,8 @@ Terminology to keep:
   **personal or free**.
 - Autonomy ladder: **Stage 1 Read-only**, **Stage 2 Draft and propose**, **Stage 3
   Conditional autonomy**, **Stage 4 Full autonomy**.
-- v2 skills: prompt, verify, own. v3 areas: autonomy, access, oversight.
+- v2 skills: prompt, verify, own. v3 areas: autonomy, access, oversight. v4 areas:
+  tool, use, request.
 
 ## Brand Commitments
 
@@ -111,7 +116,7 @@ Terminology to keep:
 
 ## Evidence on Hand
 
-- 60 authored questions with explanations, practice notes, and policy citations, plus
+- 80 authored questions with explanations, practice notes, and policy citations, plus
   answer keys and known gaps in `README.md`.
 - The three policy PDFs in `policies/` (local only).
 - The Biztech logo, `biztech.png`, and its white version, `biztech-white.png`.

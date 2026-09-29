@@ -1,6 +1,6 @@
 # Biztech AI security training (prototype)
 
-Three 20-question training modules in one app, delivered by Biztech to its own staff and
+Four 20-question training modules in one app, delivered by Biztech to its own staff and
 to client employees. A **Module** dropdown in the header switches between them, and the
 browser remembers the last one used (first visit opens AI-2).
 
@@ -14,12 +14,13 @@ a pass, a printable certificate.
 | **Data handling** | AI-1 (`v1`) | Everyone | A three-color system for deciding what data may be shared with AI tools | `questions.js` |
 | **Prompt and verify** | AI-2 (`v2`) | Everyone | How to write a prompt that gets a usable answer, and what to check before relying on it | `questions-v2.js` |
 | **Agents (managers)** | AI-3 (`v3`) | Managers, department heads, executives | What AI agents may do on their own, and the permissions, vendor terms, testing, and incident response around them | `questions-v3.js` |
+| **Other AI tools** | AI-4 (`v4`) | Everyone | Which AI tool you may use at all: what makes a tool approved, what each kind of tool may be used for, and how to ask for another one | `questions-v4.js` |
 
-Together the three cover what goes into AI (v1), what comes out (v2), and what it does
-on its own (v3).
+Together they cover what goes into AI (v1), what comes out (v2), what it does on its own
+(v3), and which AI tool it goes into in the first place (v4).
 
 Sections marked (v1) describe the data-handling quiz; [v2](#v2-prompt-and-verify) and
-[v3](#v3-agents-for-managers) have their own sections.
+[v3](#v3-agents-for-managers) and [v4](#v4-other-ai-tools) have their own sections.
 
 ## v1: Data handling
 
@@ -46,7 +47,7 @@ xdg-open index.html
 
 | File | Purpose |
 |------|---------|
-| `index.html` | Page shell: header with module picker, the training pass, start screen, quiz screen, results screen, and the print-only certificate. Version-specific markup carries `data-version="v1"`, `"v2"` or `"v3"` |
+| `index.html` | Page shell: header with module picker, the training pass, start screen, quiz screen, results screen, and the print-only certificate. Version-specific markup carries `data-version="v1"`, `"v2"`, `"v3"` or `"v4"` |
 | `styles.css` | All styling. Colors, type and radii are CSS variables in `:root`; see [Design system](#design-system) |
 | `config.js` | Deployment settings: where records are sent. Edit this, not `app.js` |
 | `fonts/` | Barlow and Barlow Semi Condensed for the app, plus Cinzel, EB Garamond and Pinyon Script for the certificate. All SIL Open Font License (`fonts/OFL*.txt`), bundled so the page and the certificate work offline |
@@ -55,6 +56,7 @@ xdg-open index.html
 | `questions.js` | **The v1 question bank** — edit this to change v1 content |
 | `questions-v2.js` | **The v2 question bank** — edit this to change v2 content |
 | `questions-v3.js` | **The v3 question bank** and the autonomy ladder (`STAGES`) — edit this to change v3 content |
+| `questions-v4.js` | **The v4 question bank** and the three kinds of tool (`TIERS`) — edit this to change v4 content |
 | `app.js` | Quiz logic: the pass, versions, rendering, scoring, feedback, review, the item board, sending the record, the certificate. Per-module code, name and results breakdown live in `VERSIONS` at the top |
 
 ## Design decisions (v1)
@@ -358,6 +360,94 @@ testing, audits, and the remaining vendor contract terms.
   The line between the two stages is a judgment the policy leaves to leaders.
 - The policy leaves the approver for new AI tools and agents blank ("Submit questions to
   ____"). The footer says "submit ... for review"; name the real contact before rollout.
+
+## v4: Other AI tools
+
+v4 answers the question a learner asks once they know the rules for one tool: *the company
+approved Gemini, but Claude is better at this and ChatGPT is better at that. Can I use
+them?* The policies never name a vendor, but they answer it. Approval belongs to the
+company's contract, account, and approved use, not to the brand. Personal and free
+tools get no company information. When another tool would do the job better, the way
+forward is to ask for it to be reviewed.
+
+The start screen sets the scene every scenario uses: **the company runs on Google
+Workspace, and Gemini, used through the company account, is company-approved.** Other
+tools are approved only where a scenario says so. For a client on another suite
+(Microsoft 365 and Copilot, say), change that paragraph in `index.html` and the Gemini and
+Google references in `questions-v4.js`. The answers don't depend on which suite it is.
+
+### Design decisions
+
+- **Three kinds of question:**
+  - **Which kind of tool (6):** three buttons, one per tool tier: company-approved,
+    department-approved, personal or free. Answers are spread 2/2/2. The pairs are built
+    to separate brand from approval: Gemini in the company account vs. a personal one,
+    Claude and ChatGPT under department and company contracts, and a free extension that
+    runs inside company Gmail.
+  - **Spot the problems (4):** as in v3, all-or-nothing, 3 problems in each.
+  - **Choice (10):** A–D decisions. Answers are spread 3/3/2/2 across A–D, and the correct
+    option is the longest in only 2 of 10.
+- **Three areas in the results breakdown:** *which tool counts* (8), *what goes where* (6),
+  and *asking and reporting* (6).
+- **The tiers come from `TIERS`**, so the start screen, the answer buttons, and the in-quiz
+  reminder always match, as `STAGES` does for v3. The plain-language names are the ones v1
+  already uses.
+- **The start screen teaches three questions** to ask before using any tool: which
+  account, approved for this use, and does the data fit.
+- **No claims about real vendors' terms.** Each scenario states the contract and
+  controls it assumes. Whether a real product trains on data, or offers a DPA, varies by
+  plan and changes over time, so the quiz never says.
+
+### Answer key
+
+| # | Type | Answer | Area | Topic | Source |
+|---|------|--------|------|-------|--------|
+| 1 | tier | Company | tool | Gemini in the company Workspace account | Leader — Vendor tiering; Employee — Promise 1 |
+| 2 | tier | Personal | tool | Gemini in a personal Gmail account | Employee — Promise 1; Red; Leader — Vendor tiering |
+| 3 | choice | B | use | Claude writes better proposals | Employee — Promise 1; Red; Leader — Vendor tiering |
+| 4 | tier | Department | tool | Marketing's contracted Claude workspace | Leader — Vendor tiering |
+| 5 | spot | 2, 4, 5 | use | An afternoon with four tools | Employee — Red; Promise 1; Leader — Vendor tiering; Inheritance rule |
+| 6 | choice | D | tool | "I pay for it myself" | Employee — Promise 1; Leader — Vendor requirements; Vendor tiering |
+| 7 | tier | Personal | tool | Free AI extension inside Gmail | Employee — Promise 1; Red; Leader — Vendor tiering |
+| 8 | spot | 2, 3, 5 | request | A tool request with real data and a chat approval | Leader — Vendor tiering; Vendor requirements; Employee — Red |
+| 9 | choice | A | use | Names removed from a contract | Employee — Red; Leader — Vendor tiering; Vendor terms — No-training |
+| 10 | tier | Company | tool | ChatGPT under a company enterprise agreement | Leader — Vendor tiering; Vendor requirements |
+| 11 | choice | C | use | HR borrowing marketing's workspace | Leader — Vendor tiering; Classification by department; Employee — Red |
+| 12 | spot | 1, 2, 5 | request | Vendor questionnaire answers | Leader — Vendor requirements; Vendor terms — Whole picture |
+| 13 | tier | Department | tool | Finance's formula-only ChatGPT workspace | Leader — Vendor tiering |
+| 14 | choice | B | request | Connecting a personal tool to Drive | Leader — Integrations; Integration checklist; Employee — Promise 1 |
+| 15 | spot | 2, 4, 6 | use | Red data in a company-approved tool | Employee — Red; Promise 3; Leader — Never share; Vendor tiering |
+| 16 | choice | A | request | Customer list already pasted | Employee — Promise 6; Red; Leader — Data leakage; Vendor terms — Exit and deletion |
+| 17 | choice | D | tool | Free account opened with a work email | Leader — Vendor tiering; Vendor requirements |
+| 18 | choice | C | request | Free trial on real tickets | Leader — Vendor tiering; Vendor requirements; Sandbox-first |
+| 19 | choice | A | use | Two AI tools agree on a deadline | Employee — Final test; Leader — Hallucination |
+| 20 | choice | B | request | A teammate's personal AI app | Employee — Promise 1; Promise 6 |
+
+### Before real use (v4)
+
+- **The Gemini setting is this module's, not the policy's.** Confirm it matches each
+  client's actual approved suite, or adapt it per client (see above).
+- **Green data in personal tools.** The employee policy says Green goes into "an approved
+  AI tool", and the leader policy says personal and free tools are "never with company
+  information". The quiz reads the two together: personal and free tools get no company
+  information at all, published material included, and are for general learning only.
+  The start screen's third question depends on that reading.
+- **Who receives a tool request.** The policy names the approvers (a department head plus
+  IT/Security for department-approved, IT/Security plus a business sponsor for
+  company-approved) but leaves the submission contact blank. The module says "ask your
+  manager to put it forward" and points to Biztech support; name the real route before
+  rollout.
+- **Questions 16 and 20 apply Promise 6 to a person's mistake.** The promise is worded
+  around a tool that "exposes information"; reporting a paste into an unapproved tool,
+  your own or a teammate's, is read as the same duty. Question 20 also asks learners to
+  raise a teammate's use, which the policy supports ("reporting a good-faith concern is
+  always the right move") but doesn't state for colleagues.
+- **Question 17 (work email) and question 18 (free trial)** reason from the tier
+  definitions and the vendor requirements; the policy doesn't mention either case. Question
+  18 also applies the sandbox-first rule, written for agents and integrations, to a
+  product trial.
+- **Question 19** (two AI tools agreeing) rests on the final test and the hallucination
+  failure mode, as v2 does, not on a sentence about using several tools.
 
 ## Design system
 
